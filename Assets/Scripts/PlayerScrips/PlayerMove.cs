@@ -24,30 +24,35 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        RayCastCheckForward();
-        RayCastCheckBackward();
-        RayCastCheckLeft();
-        RayCastCheckRight();
         Move();
     }
 
 
     void Move()
     {
-        if (Input.GetKeyDown(KeyCode.W) && canMoveForward == true)
+        if (Input.GetKeyDown(KeyCode.W))
         {
+            RayCastCheckForward();
+
+            if(canMoveForward == true)
             player.transform.position += new Vector3(0, 0, 1);
         }
-        if (Input.GetKeyDown(KeyCode.S) && canMoveBackwards == true)
+        if (Input.GetKeyDown(KeyCode.S))
         {
+            RayCastCheckBackward();
+            if(canMoveBackwards == true)
             player.transform.position -= new Vector3(0, 0, 1);
         }
-        if (Input.GetKeyDown(KeyCode.D) && canMoveRight == true)
+        if (Input.GetKeyDown(KeyCode.D))
         {
+            RayCastCheckRight();
+            if(canMoveRight == true)
             player.transform.position += new Vector3(1, 0, 0);
         }
-        if (Input.GetKeyDown(KeyCode.A) && canMoveLeft == true)
+        if (Input.GetKeyDown(KeyCode.A))
         {
+            RayCastCheckLeft();
+            if(canMoveLeft == true)
             player.transform.position -= new Vector3(1, 0, 0);
         }
     }
