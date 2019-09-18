@@ -19,7 +19,8 @@ public class ObstacleSpawn : MonoBehaviour
             int randomObstacles = Random.Range(1, obstacles.Length);
             int randomLocations = Random.Range(1, locations.Count);
 
-            Instantiate(obstacles[randomObstacles], locations[randomLocations].transform.position, locations[randomLocations].transform.rotation);
+            GameObject obstacle = Instantiate(obstacles[randomObstacles], locations[randomLocations].transform.position, locations[randomLocations].transform.rotation);
+            obstacle.transform.parent = gameObject.transform;
 
             locations.Remove(locations[randomLocations]);
 

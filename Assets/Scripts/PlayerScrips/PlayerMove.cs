@@ -69,7 +69,6 @@ public class PlayerMove : MonoBehaviour
 
             if (hitForward.transform.gameObject.tag == "Obstacle")
             {
-                Debug.Log("Hit " + hitForward);
                 canMoveForward = false;
             }
 
@@ -91,7 +90,6 @@ public class PlayerMove : MonoBehaviour
 
             if (hitBackwards.transform.gameObject.tag == "Obstacle")
             {
-                Debug.Log("Hit " + hitBackwards);
                 canMoveBackwards = false;
             }
         }
@@ -113,7 +111,6 @@ public class PlayerMove : MonoBehaviour
 
             if (hitRight.transform.gameObject.tag == "Obstacle" || hitRight.transform.gameObject.tag == "Boundary")
             {
-                Debug.Log("Hit " + hitRight);
                 canMoveRight = false;
             }
 
@@ -136,7 +133,6 @@ public class PlayerMove : MonoBehaviour
 
             if (hitLeft.transform.gameObject.tag == "Obstacle" || hitLeft.transform.gameObject.tag == "Boundary")
             {
-                Debug.Log("Hit " + hitLeft);
                 canMoveLeft = false;
             }
             
