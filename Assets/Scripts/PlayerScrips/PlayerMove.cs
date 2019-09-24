@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
+    public PlatformSpawner platformSpawner;
     public GameObject player;
     public LayerMask layerMask;
 
@@ -11,6 +12,8 @@ public class PlayerMove : MonoBehaviour
     public bool canMoveBackwards;
     public bool canMoveRight;
     public bool canMoveLeft;
+
+    public int movement = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -36,12 +39,24 @@ public class PlayerMove : MonoBehaviour
 
             if(canMoveForward == true)
             player.transform.position += new Vector3(0, 0, 1);
+            movement++;
+
+            if(movement == 3)
+            {
+                platformSpawner.EndlessSpawning();
+            }
+            if(movement == 7)
+            {
+                platformSpawner.EndlessDespawning();
+                movement = 0;
+            }
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
             RayCastCheckBackward();
             if(canMoveBackwards == true)
             player.transform.position -= new Vector3(0, 0, 1);
+            movement--;
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
