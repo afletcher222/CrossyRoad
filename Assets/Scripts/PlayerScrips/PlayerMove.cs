@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
+    public PlatformSpawner platformSpawner;
     public GameObject player;
+    public GameObject startCollider;
     public LayerMask layerMask;
 
     public bool canMoveForward;
@@ -12,13 +14,17 @@ public class PlayerMove : MonoBehaviour
     public bool canMoveRight;
     public bool canMoveLeft;
 
+    public int movement = 0;
+    public int colliderMovement;
+
     // Start is called before the first frame update
     void Start()
     {
         canMoveForward = true;
-        canMoveBackwards = true;
+        canMoveBackwards = false;
         canMoveLeft = true;
         canMoveRight = true;
+        startCollider.SetActive(true);
     }
 
     // Update is called once per frame
@@ -34,14 +40,42 @@ public class PlayerMove : MonoBehaviour
         {
             RayCastCheckForward();
 
-            if(canMoveForward == true)
-            player.transform.position += new Vector3(0, 0, 1);
+            if (canMoveForward == true)
+            {
+                player.transform.position += new Vector3(0, 0, 1);
+                movement++;
+                colliderMovement++;
+                if(colliderMovement > 3)
+                {
+                    startCollider.transform.position += new Vector3(0, 0, 1);
+                }
+
+                if (movement == 3)
+                {
+                    platformSpawner.EndlessSpawning();
+                    return;
+                }
+                if (movement == 7)
+                {
+                    platformSpawner.EndlessDespawning();
+                    movement = 0;
+                }
+                
+            }
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
             RayCastCheckBackward();
-            if(canMoveBackwards == true)
-            player.transform.position -= new Vector3(0, 0, 1);
+            if (canMoveBackwards == true)
+            {
+                player.transform.position -= new Vector3(0, 0, 1);
+                movement--;
+                if (colliderMovement > 3)
+                {
+                    colliderMovement = 3;
+                }
+                colliderMovement--;
+            }
         }
         if (Input.GetKeyDown(KeyCode.D))
         {

@@ -4,13 +4,9 @@ using UnityEngine;
 
 public class PlatformSpawner : MonoBehaviour
 {
-    public List<Transform> grassPlatformPool;
-    public int grassCounter = 0;
-    public List<Transform> waterPlatformPool;
-    public int waterCounter = 0;
-    public List<Transform> roadPlatformPool;
-    public int roadCounter = 0;
-    public int amountPooled;
+    public List<Transform> platformList;
+    public int listCounter = 0;
+    public int amountPooled = 10;
 
     public Transform grassPlatform;
     public Transform waterPlatform;
@@ -22,39 +18,17 @@ public class PlatformSpawner : MonoBehaviour
     public Vector3 spawnLocation;
 
     public int numberOfPlatforms = 10;
+    public int platformsToRemove = 0;
+    public int removeAmount;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        grassPlatformPool = new List<Transform>();
-        waterPlatformPool = new List<Transform>();
-        roadPlatformPool = new List<Transform>();
-
-        for (int i = 0; i < amountPooled; i++)
-        {
-            Transform platform = (Transform)Instantiate(grassPlatform);
-            platform.gameObject.SetActive(false);
-            platform.SetParent(platformParent);
-            grassPlatformPool.Add(platform);
-        }
-        for (int i = 0; i < amountPooled; i++)
-        {
-            Transform platform = (Transform)Instantiate(waterPlatform);
-            platform.gameObject.SetActive(false);
-            platform.SetParent(platformParent);
-            waterPlatformPool.Add(platform);
-        }
-        for (int i = 0; i < amountPooled; i++)
-        {
-            Transform platform = (Transform)Instantiate(roadPlatform);
-            platform.gameObject.SetActive(false);
-            platform.SetParent(platformParent);
-            roadPlatformPool.Add(platform);
-        }
-
-
+        platformList = new List<Transform>();
+        removeAmount = 3;
         startLocation = spawnLocation;
+
         for (int i = 0; i < numberOfPlatforms; i++)
         {
             if (i > 0)
@@ -64,41 +38,31 @@ public class PlatformSpawner : MonoBehaviour
                 switch(random)
                 {
                     case 1:
-                        grassPlatformPool[grassCounter].position = spawnLocation;
-                        grassPlatformPool[grassCounter].gameObject.SetActive(true);
-                        grassCounter++;
-                            if(grassCounter > 9)
-                        {
-                            grassCounter = 1;
-                        }
+                        Transform grass = Instantiate(grassPlatform, spawnLocation, Quaternion.identity);
+                        grass.SetParent(platformParent);
+                        platformList.Add(grass);
+                        listCounter++;
                         break;
                     case 2:
-                        waterPlatformPool[waterCounter].position = spawnLocation;
-                        waterPlatformPool[waterCounter].gameObject.SetActive(true);
-                        waterCounter++;
-                        if (waterCounter > 9)
-                        {
-                            waterCounter = 0;
-                        }
+                        Transform water = Instantiate(waterPlatform, spawnLocation, Quaternion.identity);
+                        water.SetParent(platformParent);
+                        platformList.Add(water);
+                        listCounter++;
                         break;
                     case 3:
-                        roadPlatformPool[roadCounter].position = spawnLocation;
-                        roadPlatformPool[roadCounter].gameObject.SetActive(true);
-                        roadCounter++;
-                        if (roadCounter > 9)
-                        {
-                            roadCounter = 0;
-                        }
+                        Transform road = Instantiate(roadPlatform, spawnLocation, Quaternion.identity);
+                        road.SetParent(platformParent);
+                        platformList.Add(road);
+                        listCounter++;
                         break;
-
                 }
 
             }
             else if(i == 0)
             {
-                grassPlatformPool[grassCounter].position = spawnLocation;
-                grassPlatformPool[grassCounter].gameObject.SetActive(true);
-                grassCounter++;
+                Transform grass = Instantiate(grassPlatform, spawnLocation, Quaternion.identity);
+                platformList.Add(grass);
+                listCounter++;
             }
             spawnLocation.z++;
         }
@@ -111,5 +75,48 @@ public class PlatformSpawner : MonoBehaviour
     }
 
 
+    public void EndlessSpawning()
+    {
+        for (int i = 0; i < 7; i++)
+        {
+                int random = Random.Range(1, 4);
 
+                switch (random)
+                {
+                    case 1:
+                        Transform grass = Instantiate(grassPlatform, spawnLocation, Quaternion.identity);
+                        grass.SetParent(platformParent);
+                        platformList.Add(grass);
+                        listCounter++;
+                        break;
+                    case 2:
+                        Transform water = Instantiate(waterPlatform, spawnLocation, Quaternion.identity);
+                        water.SetParent(platformParent);
+                        platformList.Add(water);
+                        listCounter++;
+                        break;
+                    case 3:
+                        Transform road = Instantiate(roadPlatform, spawnLocation, Quaternion.identity);
+                        road.SetParent(platformParent);
+                        platformList.Add(road);
+                        listCounter++;
+                        break;
+                }
+            spawnLocation.z++;
+        }
+    }
+
+    public void EndlessDespawning()
+    {
+        for (int i = 0; i < removeAmount; i++)
+        {
+            Destroy(platformList[platformsToRemove].gameObject);
+            platformList.Remove(platformList[platformsToRemove]);
+        }
+
+        removeAmount = 7;
+    }
 }
+
+
+
