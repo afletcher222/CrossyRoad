@@ -9,6 +9,7 @@ public class PlayerMove : MonoBehaviour
     public GameObject startCollider;
     public LayerMask layerMask;
 
+    public bool canMove;
     public bool canMoveForward;
     public bool canMoveBackwards;
     public bool canMoveRight;
@@ -20,6 +21,7 @@ public class PlayerMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        canMove = false;
         canMoveForward = true;
         canMoveBackwards = false;
         canMoveLeft = true;
@@ -30,7 +32,10 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Move();
+        if (canMove == true)
+        {
+            Move();
+        }
     }
 
 
