@@ -508,7 +508,7 @@ MonoBehaviour:
   platformParent: {fileID: 702306518}
   startLocation: {x: 0, y: 0, z: 0}
   spawnLocation: {x: 0, y: 0, z: 0}
-  numberOfPlatforms: 10
+  numberOfPlatforms: 14
   platformsToRemove: 0
   removeAmount: 0
 --- !u!4 &702306518
@@ -712,7 +712,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ee89169e66a19c4fb40ac32c3ed67e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 687576865}
+  target: {fileID: 2097106525}
   smoothTime: 0.3
   velocity: {x: 0, y: 0, z: 0}
 --- !u!1 &1616038881
@@ -997,7 +997,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2097106524}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.22, z: 1.65}
+  m_LocalPosition: {x: 0, y: 0, z: -1.89}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 687576865}
