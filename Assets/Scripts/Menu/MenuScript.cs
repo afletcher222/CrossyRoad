@@ -21,7 +21,7 @@ public class MenuScript : MonoBehaviour
 
     public void OnStartButtonClick()
     {
-        startPanel.SetActive(true);
+        startPanel.SetActive(false);
         playerMove.canMove = true;
     }
 
