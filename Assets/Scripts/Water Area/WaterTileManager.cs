@@ -2,21 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum WaterType { pad, log }
-
 public class WaterTileManager : MonoBehaviour
 {
-    public WaterType type;
+    // General vars
+    public float padLogRate;
+
+    // Log vars
+    public GameObject logPrefab;
+
+    // Pad vars
+    public GameObject padPrefab;
+    public List<Transform> padAbsoluteSpawn, padPossibleSpawn;
+    public float padSpawnRate, padSinkDelay; // After sink delay, set rb.kinematic to false
 
     private void Awake()
     {
-        if (Random.value > .5)
+        if (Random.value < padLogRate)
         {
-            type = WaterType.pad;
+            Instantiate(logPrefab, this.transform);
         }
         else
         {
-            type = WaterType.log;
+            foreach (Transform x in padAbsoluteSpawn)
+            {
+                Instantiate(padPrefab, x);
+            }
+            foreach (Transform x in padPossibleSpawn)
+            {
+                if (Random.value < padSpawnRate)
+                {
+                    Instantiate(padPrefab, x);
+                }
+            }
         }
     }
 }

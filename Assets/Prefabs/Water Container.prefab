@@ -66,6 +66,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4232579881077824139}
+  - component: {fileID: 8582202525424062395}
   m_Layer: 0
   m_Name: Water Container
   m_TagString: Untagged
@@ -90,6 +91,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8582202525424062395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4232579881077824142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f54f1e99eb3d0734a9368ed623e0da6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  padLogRate: 0.6
+  logPrefab: {fileID: 2190005220584242295, guid: e76a50effd2a35a43a3d95e8f137b2be,
+    type: 3}
+  padPrefab: {fileID: 2470054432486974588, guid: 7c355ef4cf5787d45bca2dadcc267583,
+    type: 3}
+  padAbsoluteSpawn:
+  - {fileID: 4232579882988355498}
+  - {fileID: 4232579881928530678}
+  - {fileID: 4232579881260189865}
+  padPossibleSpawn:
+  - {fileID: 4232579882273497002}
+  - {fileID: 4232579881986264330}
+  - {fileID: 4232579881765945982}
+  - {fileID: 4232579882053297183}
+  - {fileID: 4232579881843653228}
+  - {fileID: 4232579881066965856}
+  padSpawnRate: 0.2
+  padSinkDelay: 5
 --- !u!1 &4232579881195538794
 GameObject:
   m_ObjectHideFlags: 0
@@ -517,7 +548,7 @@ GameObject:
   - component: {fileID: 4232579882227293901}
   m_Layer: 0
   m_Name: waterMesh
-  m_TagString: Untagged
+  m_TagString: Deathzone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -589,8 +620,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4232579882227293903}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
