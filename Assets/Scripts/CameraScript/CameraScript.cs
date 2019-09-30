@@ -11,7 +11,6 @@ public class CameraScript : MonoBehaviour
 
     public Vector3 velocity = Vector3.zero;
 
-
     // Update is called once per frame
     void LateUpdate()
     {
