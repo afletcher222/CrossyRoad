@@ -85,7 +85,6 @@ public class PlayerMove : MonoBehaviour
                 if (movement == 3)
                 {
                     platformSpawner.EndlessSpawning();
-                    return;
                 }
                 if (movement == 7)
                 {
