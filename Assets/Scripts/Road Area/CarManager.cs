@@ -20,7 +20,7 @@ public class CarManager : MonoBehaviour
 
         }
 
-        if (this.transform.position.x >= 20 || this.transform.position.x <= -20)
+        if (this.transform.position.x >= 13 || this.transform.position.x <= -13)
         {
             DeSpawn();
         }

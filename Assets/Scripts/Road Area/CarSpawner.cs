@@ -28,7 +28,7 @@ public class CarSpawner : MonoBehaviour
 
     private void Spawn()
     {
-        int random = Random.Range(2, 5);
+        int random = Random.Range(3, 8);
 
         carSpawnTime = Time.time + random;
         //Instantiate(carNum01Prefab, transform.position, Quaternion.Euler(-90,90,0));
