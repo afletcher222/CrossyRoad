@@ -106,9 +106,15 @@ MonoBehaviour:
   padLogRate: 0.5
   logPrefab: {fileID: 2190005220584242295, guid: e76a50effd2a35a43a3d95e8f137b2be,
     type: 3}
-  logSpawn1: {x: -6, y: 0, z: 0}
-  logSpawn2: {x: 0, y: 0, z: 0}
-  logSpawn3: {x: 6, y: 0, z: 0}
+  logSpawns:
+  - {x: -14, y: 0, z: 0}
+  - {x: -7, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 7, y: 0, z: 0}
+  - {x: 14, y: 0, z: 0}
+  speed: 1
+  speedMin: 0.5
+  speedMax: 3
   padPrefab: {fileID: 2470054432486974588, guid: 7c355ef4cf5787d45bca2dadcc267583,
     type: 3}
   padAbsoluteSpawn:
