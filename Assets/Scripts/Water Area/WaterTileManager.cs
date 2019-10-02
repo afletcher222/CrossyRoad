@@ -16,22 +16,18 @@ public class WaterTileManager : MonoBehaviour
     public List<Transform> padAbsoluteSpawn, padPossibleSpawn;
     public float padSpawnRate, padSinkDelay; // After sink delay, set rb.kinematic to false
 
-    /*
     private void Awake()
     {
         if (Random.value < padLogRate)
         {
             bool floatLeft = (Random.value < .5f);
             GameObject log = Instantiate(logPrefab, this.transform);
-            log.GetComponent<LogBehaviour>().leadLog = true;
             log.GetComponent<LogBehaviour>().floatLeft = floatLeft;
             log.transform.localPosition = logSpawn1;
             log = Instantiate(logPrefab, this.transform);
-            log.GetComponent<LogBehaviour>().leadLog = true;
             log.GetComponent<LogBehaviour>().floatLeft = floatLeft;
             log.transform.localPosition = logSpawn2;
             log = Instantiate(logPrefab, this.transform);
-            log.GetComponent<LogBehaviour>().leadLog = true;
             log.GetComponent<LogBehaviour>().floatLeft = floatLeft;
             log.transform.localPosition = logSpawn3;
         }
@@ -50,6 +46,4 @@ public class WaterTileManager : MonoBehaviour
             }
         }
     }
-    */
-
 }

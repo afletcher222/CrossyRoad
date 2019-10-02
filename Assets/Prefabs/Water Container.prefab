@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f54f1e99eb3d0734a9368ed623e0da6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  padLogRate: 0.6
+  padLogRate: 0.5
   logPrefab: {fileID: 2190005220584242295, guid: e76a50effd2a35a43a3d95e8f137b2be,
     type: 3}
   logSpawn1: {x: -6, y: 0, z: 0}

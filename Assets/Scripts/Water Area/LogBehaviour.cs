@@ -4,43 +4,40 @@ using UnityEngine;
 
 public class LogBehaviour : MonoBehaviour
 {
-    public bool leadLog = false;
     public GameObject logPrefab;
     public float speed;
     public int maxLogs;
     public bool floatLeft;
     public float maxX, minX;
 
-    void Start()
+    public Vector3 testWorld, testLocal;
+
+    void Awake()
     {
+        /*
         int logCount = Random.Range(2, maxLogs + 1);
-        while (logCount > 1)
+        for (int x = logCount; x > 1; x--)
         {
             GameObject log = Instantiate(logPrefab, this.transform);
-            log.GetComponent<LogBehaviour>().floatLeft = floatLeft;
-            Vector3 newPos = this.transform.position;
-            newPos.x += logCount;
+            Vector3 newPos = Vector3.zero;
+            newPos.x += (x - 1);
             log.transform.localPosition = newPos;
-
-            logCount--;
-        }
-        
+            log.transform.rotation = Quaternion.Euler(Vector3.zero);
+            
+        }*/
     }
 
     void Update()
     {
-        if (leadLog)
+        Vector3 newPos = transform.position;
+        if (floatLeft)
         {
-            Vector3 newPos = transform.position;
-            if (floatLeft)
-            {
-                newPos.x += Time.deltaTime * speed;
-            }
-            else
-            {
-                newPos.x -= Time.deltaTime * speed;
-            }
-            transform.position = newPos;
+            newPos.x += Time.deltaTime * speed;
         }
+        else
+        {
+            newPos.x -= Time.deltaTime * speed;
+        }
+        transform.position = newPos;
     }
 }
