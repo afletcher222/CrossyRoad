@@ -128,7 +128,7 @@ MonoBehaviour:
   speed: 1
   speedMin: 0.5
   speedMax: 3
-  locationDisable: {fileID: 0}
+  locationDisable: {fileID: 4232579881195538794}
   padPrefab: {fileID: 2470054432486974588, guid: 7c355ef4cf5787d45bca2dadcc267583,
     type: 3}
   padAbsoluteSpawn:
