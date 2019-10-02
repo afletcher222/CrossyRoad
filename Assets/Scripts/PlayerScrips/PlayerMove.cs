@@ -14,6 +14,10 @@ public class PlayerMove : MonoBehaviour
     public bool canMoveBackwards;
     public bool canMoveRight;
     public bool canMoveLeft;
+    public bool moveForward;
+    public bool moveBackwards;
+    public bool moveRight;
+    public bool moveLeft;
 
     public int movement = 0;
     public int colliderMovement;
@@ -29,7 +33,30 @@ public class PlayerMove : MonoBehaviour
         startCollider.SetActive(true);
     }
 
-    // Update is called once per frame
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            moveForward = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            moveBackwards = true;
+        }
+        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            moveRight = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            moveLeft = true;
+        }
+
+
+    }
     void FixedUpdate()
     {
         if (canMove == true)
@@ -41,10 +68,10 @@ public class PlayerMove : MonoBehaviour
 
     void Move()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        if (moveForward == true)
         {
             RayCastCheckForward();
-
+            
             if (canMoveForward == true)
             {
                 player.transform.position += new Vector3(0, 0, 1);
@@ -67,10 +94,12 @@ public class PlayerMove : MonoBehaviour
                 }
                 
             }
+            moveForward = false;
         }
-        if (Input.GetKeyDown(KeyCode.S))
+        if (moveBackwards == true)
         {
             RayCastCheckBackward();
+            
             if (canMoveBackwards == true)
             {
                 player.transform.position -= new Vector3(0, 0, 1);
@@ -81,18 +110,21 @@ public class PlayerMove : MonoBehaviour
                 }
                 colliderMovement--;
             }
+            moveBackwards = false;
         }
-        if (Input.GetKeyDown(KeyCode.D))
+        if (moveRight == true)
         {
             RayCastCheckRight();
             if(canMoveRight == true)
             player.transform.position += new Vector3(1, 0, 0);
+            moveRight = false;
         }
-        if (Input.GetKeyDown(KeyCode.A))
+        if (moveLeft == true)
         {
             RayCastCheckLeft();
             if(canMoveLeft == true)
             player.transform.position -= new Vector3(1, 0, 0);
+            moveLeft = false;
         }
     }
 
