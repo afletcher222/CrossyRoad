@@ -21,6 +21,7 @@ public class PlayerMove : MonoBehaviour
 
     public int movement = 0;
     public int colliderMovement;
+    public float timeBetweenMoves;
 
     // Start is called before the first frame update
     void Start()
@@ -38,21 +39,25 @@ public class PlayerMove : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
         {
-            moveForward = true;
+            //moveForward = true;
+            Invoke("MoveDelayForward", timeBetweenMoves);
         }
 
         if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
         {
-            moveBackwards = true;
+            //moveBackwards = true;
+            Invoke("MoveDelayBackward", timeBetweenMoves);
         }
         if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
         {
-            moveRight = true;
+            //moveRight = true;
+            Invoke("MoveDelayRight", timeBetweenMoves);
         }
 
         if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            moveLeft = true;
+            //moveLeft = true;
+            Invoke("MoveDelayLeft", timeBetweenMoves);
         }
 
 
@@ -214,5 +219,24 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    
+    public void MoveDelayForward()
+    {
+        moveForward = true;      
+    }
+
+    public void MoveDelayBackward()
+    {
+        moveBackwards = true;     
+    }
+    public void MoveDelayRight()
+    {
+        moveRight = true;      
+    }
+    public void MoveDelayLeft()
+    {
+
+        moveLeft = true;  
+    }
+
+
 }
