@@ -16,6 +16,7 @@ public class WaterTileManager : MonoBehaviour
     public List<Transform> padAbsoluteSpawn, padPossibleSpawn;
     public float padSpawnRate, padSinkDelay; // After sink delay, set rb.kinematic to false
 
+    /*
     private void Awake()
     {
         if (Random.value < padLogRate)
@@ -49,4 +50,6 @@ public class WaterTileManager : MonoBehaviour
             }
         }
     }
+    */
+
 }
