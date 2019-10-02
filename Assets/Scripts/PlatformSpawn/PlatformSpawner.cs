@@ -19,6 +19,8 @@ public class PlatformSpawner : MonoBehaviour
     public int platformsToRemove = 0;
     public int removeAmount;
 
+    public bool roadLanes;
+
 
     // Start is called before the first frame update
     void Start()
@@ -39,16 +41,27 @@ public class PlatformSpawner : MonoBehaviour
                         Transform grass = Instantiate(grassPlatform, spawnLocation, Quaternion.identity);
                         grass.SetParent(platformParent);
                         platformList.Add(grass);
+                        roadLanes = false;
                         break;
                     case 2:
                         Transform water = Instantiate(waterPlatform, spawnLocation, Quaternion.identity);
                         water.SetParent(platformParent);
                         platformList.Add(water);
+                        roadLanes = false;
                         break;
                     case 3:
                         Transform road = Instantiate(roadPlatform, spawnLocation, Quaternion.identity);
                         road.SetParent(platformParent);
                         platformList.Add(road);
+                        if(roadLanes == false)
+                        {
+                            roadLanes = true;
+                        }
+                        else if(roadLanes == true)
+                        {
+                            road.GetComponent<CarSpawner>().roadLines.SetActive(true);
+                            print("atleast 2 roads");
+                        }
                         break;
                 }
 
@@ -94,17 +107,28 @@ public class PlatformSpawner : MonoBehaviour
                         Transform grass = Instantiate(grassPlatform, spawnLocation, Quaternion.identity);
                         grass.SetParent(platformParent);
                         platformList.Add(grass);
+                        roadLanes = false;
                         break;
                     case 2:
                         Transform water = Instantiate(waterPlatform, spawnLocation, Quaternion.identity);
                         water.SetParent(platformParent);
                         platformList.Add(water);
+                        roadLanes = false;
                         break;
                     case 3:
                         Transform road = Instantiate(roadPlatform, spawnLocation, Quaternion.identity);
                         road.SetParent(platformParent);
                         platformList.Add(road);
-                        break;
+                    if (roadLanes == false)
+                    {
+                        roadLanes = true;
+                    }
+                    else if (roadLanes == true)
+                    {
+                        road.GetComponent<CarSpawner>().roadLines.SetActive(true);
+                        print("atleast 2 roads");
+                    }
+                    break;
                 }
             spawnLocation.z++;
         }

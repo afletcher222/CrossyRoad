@@ -8,6 +8,7 @@ public class CarManager : MonoBehaviour
     public  int randomSpeed;
  
 
+
     void Update()
     {
         if (carDrivingRight == true)

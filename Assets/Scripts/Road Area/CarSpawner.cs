@@ -11,7 +11,10 @@ public class CarSpawner : MonoBehaviour
 
     public int randomSpawnPoint;
     public int randomCarSpeed;
+
     public GameObject carNum01Prefab;
+    public GameObject roadLines;
+
 
 
      void Awake()
