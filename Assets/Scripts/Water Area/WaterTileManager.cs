@@ -11,6 +11,7 @@ public class WaterTileManager : MonoBehaviour
     public GameObject logPrefab;
     public List<Vector3> logSpawns;
     public float speed, speedMin, speedMax;
+    public GameObject locationDisable;
 
     // Pad vars
     public GameObject padPrefab;
@@ -21,6 +22,7 @@ public class WaterTileManager : MonoBehaviour
     {
         if (Random.value < padLogRate)
         {
+            locationDisable.SetActive(false);
             bool floatLeft = (Random.value < .5f);
             speed = Random.Range(speedMin, speedMax);
             GameObject log = null;
