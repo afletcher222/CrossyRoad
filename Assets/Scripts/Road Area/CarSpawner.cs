@@ -5,11 +5,17 @@ using UnityEngine;
 public class CarSpawner : MonoBehaviour
 {
     public float carSpawnTime;
-    
 
+    public Transform road;
+    public Transform[] carSpawnPoints = new Transform[2];
+
+    public int randomSpawnPoint;
     public GameObject carNum01Prefab;
 
-    
+     void Awake()
+    {
+        randomSpawnPoint = Random.Range(0, 2);
+    }
 
     // Update is called once per frame
     void Update()
@@ -25,8 +31,10 @@ public class CarSpawner : MonoBehaviour
         int random = Random.Range(2, 5);
 
         carSpawnTime = Time.time + random;
-        Instantiate(carNum01Prefab, transform.position, Quaternion.Euler(-90,90,0));
-        
+        //Instantiate(carNum01Prefab, transform.position, Quaternion.Euler(-90,90,0));
+        GameObject car = Instantiate(carNum01Prefab, carSpawnPoints[randomSpawnPoint].position, carSpawnPoints[randomSpawnPoint].rotation);
+        car.transform.SetParent(road);
+        //car.transform.LookAt();
     }
 
     private bool ShouldSpawn()
