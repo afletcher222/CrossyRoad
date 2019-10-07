@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class ParentLocation : MonoBehaviour
 {
-
     private void OnTriggerEnter(Collider player)
     {
         if(player.gameObject.tag == "Player")
         {
             player.transform.SetParent(this.transform);
+            player.transform.localPosition = Vector3.zero;
         }
     }
 }

@@ -240,9 +240,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1828673537394463221}
+  - component: {fileID: 7720453626648154610}
+  - component: {fileID: -6110279186931683010}
   m_Layer: 0
   m_Name: carTwo
-  m_TagString: Untagged
+  m_TagString: Deathzone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -271,6 +273,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7720453626648154610
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3403482427746362342}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.91, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-6110279186931683010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3403482427746362342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08a6e9903ef7fa84a9e0e0d783b5ea01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carDrivingRight: 0
+  randomSpeed: 0
 --- !u!1 &3665635999181328548
 GameObject:
   m_ObjectHideFlags: 0

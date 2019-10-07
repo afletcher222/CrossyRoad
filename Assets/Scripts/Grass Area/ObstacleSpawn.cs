@@ -22,6 +22,7 @@ public class ObstacleSpawn : MonoBehaviour
             GameObject obstacle = Instantiate(obstacles[randomObstacles], locations[randomLocations].transform.position, locations[randomLocations].transform.rotation);
             obstacle.transform.parent = gameObject.transform;
 
+            Destroy(locations[randomLocations].GetComponent<ParentLocation>());
             locations.Remove(locations[randomLocations]);
 
         }

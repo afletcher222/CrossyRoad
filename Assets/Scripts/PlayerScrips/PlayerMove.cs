@@ -9,6 +9,7 @@ public class PlayerMove : MonoBehaviour
     public GameObject startCollider;
     public LayerMask layerMask;
     public Scoring score;
+    public Rigidbody rb;
 
     public bool canMove;
     public bool canMoveForward;
@@ -254,12 +255,25 @@ public class PlayerMove : MonoBehaviour
         moveLeft = true;  
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Deathzone")
+        {
+            Death();
+        }
+    }
+
     public void Death()
     {
         canMove = false;
+        this.gameObject.transform.SetParent(null);
         score.CheckHighScore();
-        
+        Invoke("StopFalling", 1f);
     }
 
-
+    void StopFalling()
+    {
+        rb.useGravity = false;
+        rb.velocity = Vector3.zero;
+    }
 }
