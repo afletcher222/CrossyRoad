@@ -5,6 +5,7 @@ using System.IO;
 using UnityEngine.UI;
 using System;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class Scoring : MonoBehaviour
 {
@@ -24,15 +25,22 @@ public class Scoring : MonoBehaviour
     public GameObject highScorePanel;
     public GameObject highScoreSubmitPanel;
     public GameObject startPanel;
+    public GameObject playAgainButton;
+    public GameObject highScoreCloseButton;
+    public GameObject gameOverPanel;
     public Text[] highScoreResultText = new Text[10];
     public InputField highScoreName;
     public Text highScoreNumberText;
+    public Text gameOverText;
 
     // Start is called before the first frame update
     void Awake()
     {
         highScorePanel.SetActive(false);
         highScoreSubmitPanel.SetActive(false);
+        highScoreCloseButton.SetActive(true);
+        playAgainButton.SetActive(false);
+        gameOverPanel.SetActive(false);
         player = FindObjectOfType<PlayerMove>();
         if (highScore.Count == 0)
         {
@@ -63,10 +71,15 @@ public class Scoring : MonoBehaviour
         if (player.points > highScore[0].score)
         {
             highScoreNumberText.text = "you scored " + player.points + " points!";
+            playAgainButton.SetActive(true);
+            highScoreCloseButton.SetActive(false);
             highScoreSubmitPanel.SetActive(true);
         }
         else
-            highScorePanel.SetActive(true);
+        {
+            gameOverText.text = "you scored " + player.points + " points!";
+            gameOverPanel.SetActive(true);
+        }
     }
 
 
@@ -108,5 +121,9 @@ public class Scoring : MonoBehaviour
         }
     }
 
+    public void OnResetButtonClick()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 
 }
