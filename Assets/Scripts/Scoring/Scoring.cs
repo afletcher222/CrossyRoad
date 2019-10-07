@@ -38,10 +38,12 @@ public class Scoring : MonoBehaviour
         {
             StreamReader readScore = new StreamReader("Resources/HighScore.txt");
             StreamReader readName = new StreamReader("Resources/HighScoreName.txt");
+            int reverse = 9;
             for (int i = 0; i < 10; i++)
             {
                 highScore.Add(new HighScore { score = int.Parse(readScore.ReadLine()), person = readName.ReadLine() });
-                highScoreResultText[i].text = highScore[i].person + ": " + highScore[i].score.ToString(); 
+                highScoreResultText[i].text = highScore[reverse].person + ": " + highScore[reverse].score.ToString();
+                reverse--;
             }
         }
     }
