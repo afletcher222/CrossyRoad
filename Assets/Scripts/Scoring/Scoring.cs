@@ -42,7 +42,7 @@ public class Scoring : MonoBehaviour
             for (int i = 0; i < 10; i++)
             {
                 highScore.Add(new HighScore { score = int.Parse(readScore.ReadLine()), person = readName.ReadLine() });
-                highScoreResultText[i].text = highScore[reverse].person + ": " + highScore[reverse].score.ToString();
+                highScoreResultText[reverse].text = highScore[i].person + ": " + highScore[i].score.ToString();
                 reverse--;
             }
         }
