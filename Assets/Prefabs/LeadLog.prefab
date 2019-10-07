@@ -64,8 +64,8 @@ MonoBehaviour:
   speed: 1
   maxLogs: 4
   floatLeft: 0
-  maxX: 16
-  minX: -16
+  maxX: 18
+  minX: -18
   testWorld: {x: 0, y: 0, z: 0}
   testLocal: {x: 0, y: 0, z: 0}
 --- !u!1 &5755193926858455846
