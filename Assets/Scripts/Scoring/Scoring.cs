@@ -102,7 +102,7 @@ public class Scoring : MonoBehaviour
     public void OnHighScoreCloseButtonClick()
     {
         highScorePanel.SetActive(false);
-        if(startPanel == false)
+        if(startPanel.activeInHierarchy == false)
         {
             startPanel.SetActive(true);
         }
