@@ -8,6 +8,7 @@ public class PlayerMove : MonoBehaviour
     public GameObject player;
     public GameObject startCollider;
     public LayerMask layerMask;
+    public Scoring score;
 
     public bool canMove;
     public bool canMoveForward;
@@ -21,6 +22,9 @@ public class PlayerMove : MonoBehaviour
 
     public int movement = 0;
     public int colliderMovement;
+    public float timeBetweenMoves;
+    public int points;
+    public int holdPoints;
 
     // Start is called before the first frame update
     void Start()
@@ -31,28 +35,36 @@ public class PlayerMove : MonoBehaviour
         canMoveLeft = true;
         canMoveRight = true;
         startCollider.SetActive(true);
+    
     }
 
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+        if (canMove == true)
         {
-            moveForward = true;
-        }
+            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                //moveForward = true;
+                Invoke("MoveDelayForward", timeBetweenMoves);
+            }
 
-        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            moveBackwards = true;
-        }
-        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            moveRight = true;
-        }
+            if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                //moveBackwards = true;
+                Invoke("MoveDelayBackward", timeBetweenMoves);
+            }
+            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                //moveRight = true;
+                Invoke("MoveDelayRight", timeBetweenMoves);
+            }
 
-        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            moveLeft = true;
+            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                //moveLeft = true;
+                Invoke("MoveDelayLeft", timeBetweenMoves);
+            }
         }
 
 
@@ -76,6 +88,14 @@ public class PlayerMove : MonoBehaviour
             {
                 player.transform.position += new Vector3(0, 0, 1);
                 movement++;
+                if(holdPoints <= 0)
+                {
+                    points++;
+                }
+                else if( holdPoints > 0)
+                {
+                    holdPoints--;
+                }
                 colliderMovement++;
                 if(colliderMovement > 3)
                 {
@@ -103,6 +123,7 @@ public class PlayerMove : MonoBehaviour
             {
                 player.transform.position -= new Vector3(0, 0, 1);
                 movement--;
+                holdPoints++;
                 if (colliderMovement > 3)
                 {
                     colliderMovement = 3;
@@ -214,5 +235,31 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    
+    public void MoveDelayForward()
+    {
+        moveForward = true;      
+    }
+
+    public void MoveDelayBackward()
+    {
+        moveBackwards = true;     
+    }
+    public void MoveDelayRight()
+    {
+        moveRight = true;      
+    }
+    public void MoveDelayLeft()
+    {
+
+        moveLeft = true;  
+    }
+
+    public void Death()
+    {
+        canMove = false;
+        score.CheckHighScore();
+        
+    }
+
+
 }

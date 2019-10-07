@@ -9,7 +9,9 @@ public class WaterTileManager : MonoBehaviour
 
     // Log vars
     public GameObject logPrefab;
-    public Vector3 logSpawn1, logSpawn2, logSpawn3;
+    public List<Vector3> logSpawns;
+    public float speed, speedMin, speedMax;
+    public GameObject locationDisable;
 
     // Pad vars
     public GameObject padPrefab;
@@ -20,16 +22,17 @@ public class WaterTileManager : MonoBehaviour
     {
         if (Random.value < padLogRate)
         {
+            locationDisable.SetActive(false);
             bool floatLeft = (Random.value < .5f);
-            GameObject log = Instantiate(logPrefab, this.transform);
-            log.GetComponent<LogBehaviour>().floatLeft = floatLeft;
-            log.transform.localPosition = logSpawn1;
-            log = Instantiate(logPrefab, this.transform);
-            log.GetComponent<LogBehaviour>().floatLeft = floatLeft;
-            log.transform.localPosition = logSpawn2;
-            log = Instantiate(logPrefab, this.transform);
-            log.GetComponent<LogBehaviour>().floatLeft = floatLeft;
-            log.transform.localPosition = logSpawn3;
+            speed = Random.Range(speedMin, speedMax);
+            GameObject log = null;
+            foreach (Vector3 x in logSpawns)
+            {
+                log = Instantiate(logPrefab, this.transform);
+                log.GetComponent<LogBehaviour>().floatLeft = floatLeft;
+                log.GetComponent<LogBehaviour>().speed = speed;
+                log.transform.localPosition = x;
+            }
         }
         else
         {
