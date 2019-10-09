@@ -11,8 +11,10 @@ public class CarSpawner : MonoBehaviour
 
     public int randomSpawnPoint;
     public int randomCarSpeed;
+    public int carSpawnRandom;
 
     public GameObject carNum01Prefab;
+    public GameObject carNum02Prefab;
     public GameObject roadLines;
 
 
@@ -21,6 +23,7 @@ public class CarSpawner : MonoBehaviour
     {
         randomSpawnPoint = Random.Range(0, 2);
         randomCarSpeed = Random.Range(1, 3);
+        carSpawnRandom = Random.Range(1, 4);
     }
 
     // Update is called once per frame
@@ -35,13 +38,27 @@ public class CarSpawner : MonoBehaviour
     private void Spawn()
     {
         int random = Random.Range(3, 8);
+        
+      
 
-        carSpawnTime = Time.time + random;
-        //Instantiate(carNum01Prefab, transform.position, Quaternion.Euler(-90,90,0));
-        GameObject car = Instantiate(carNum01Prefab, carSpawnPoints[randomSpawnPoint].position, carSpawnPoints[randomSpawnPoint].rotation);
-        car.transform.SetParent(road);
-        car.GetComponent<CarManager>().randomSpeed = randomCarSpeed;
-        //car.transform.LookAt();
+        if (carSpawnRandom >= 3)
+        {
+            carSpawnTime = Time.time + random;
+            //Instantiate(carNum01Prefab, transform.position, Quaternion.Euler(-90,90,0));
+            GameObject car = Instantiate(carNum01Prefab, carSpawnPoints[randomSpawnPoint].position, carSpawnPoints[randomSpawnPoint].rotation);
+            car.transform.SetParent(road);
+            car.GetComponent<CarManager>().randomSpeed = randomCarSpeed + 3;
+            //car.transform.LookAt();
+        }
+        if (carSpawnRandom < 3)
+        {
+            carSpawnTime = Time.time + random;
+            //Instantiate(carNum01Prefab, transform.position, Quaternion.Euler(-90,90,0));
+            GameObject car = Instantiate(carNum02Prefab, carSpawnPoints[randomSpawnPoint].position, carSpawnPoints[randomSpawnPoint].rotation);
+            car.transform.SetParent(road);
+            car.GetComponent<CarManager>().randomSpeed = randomCarSpeed;
+            //car.transform.LookAt();
+        }
     }
 
     private bool ShouldSpawn()
