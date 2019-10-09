@@ -28,6 +28,7 @@ public class Scoring : MonoBehaviour
     public GameObject playAgainButton;
     public GameObject highScoreCloseButton;
     public GameObject gameOverPanel;
+    public GameObject highScoreCanvas;
     public Text[] highScoreResultText = new Text[10];
     public InputField highScoreName;
     public Text highScoreNumberText;
@@ -54,6 +55,11 @@ public class Scoring : MonoBehaviour
                 reverse--;
             }
         }
+        Vector3 scoreCanvas = highScoreCanvas.transform.position;
+
+        scoreCanvas.z =  (highScore[9].score - 1);
+
+        highScoreCanvas.transform.position = scoreCanvas;
     }
 
     void GetHighScore()

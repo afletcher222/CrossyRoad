@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class PlayerMove : MonoBehaviour
 {
     public PlatformSpawner platformSpawner;
@@ -27,6 +27,8 @@ public class PlayerMove : MonoBehaviour
     public int points;
     public int holdPoints;
 
+    public Text scoreText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +38,8 @@ public class PlayerMove : MonoBehaviour
         canMoveLeft = true;
         canMoveRight = true;
         startCollider.SetActive(true);
-    
+        points = 0;
+        scoreText.text = "Score: " + points;
     }
 
 
@@ -92,6 +95,7 @@ public class PlayerMove : MonoBehaviour
                 if(holdPoints <= 0)
                 {
                     points++;
+                    scoreText.text = "Score: " + points;
                 }
                 else if( holdPoints > 0)
                 {
