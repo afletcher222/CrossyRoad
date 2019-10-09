@@ -23,6 +23,7 @@ public class MenuScript : MonoBehaviour
     {
         startPanel.SetActive(false);
         playerMove.canMove = true;
+        playerMove.scoreText.gameObject.SetActive(true);
     }
 
     public void OnQuitButtonClick()

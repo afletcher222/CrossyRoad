@@ -40,6 +40,7 @@ public class PlayerMove : MonoBehaviour
         startCollider.SetActive(true);
         points = 0;
         scoreText.text = "Score: " + points;
+        scoreText.gameObject.SetActive(false);
     }
 
 
