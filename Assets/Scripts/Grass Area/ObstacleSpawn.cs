@@ -13,7 +13,7 @@ public class ObstacleSpawn : MonoBehaviour
     {
         int random = Random.Range(2, 5);
 
-        GetComponentsInChildren<ObstacleLocations>(false, locations);
+        //GetComponentsInChildren<ObstacleLocations>(false, locations);
 
         for (int i = 0; i < random; i++)
         {
@@ -28,26 +28,31 @@ public class ObstacleSpawn : MonoBehaviour
 
         }
 
-        random = Random.Range(6, 14);
+        int randomSecond = Random.Range(6, 14);
 
-        for (int i = 0; i < random; i++)
+        for (int i = 0; i < randomSecond; i++)
         {
             int randomObstacles = Random.Range(0, (obstacles.Length - 1));
             int randomLocations = Random.Range(0, (outsideLocations.Count - 1));
 
             if (i > 1)
             {
-                GameObject obstacle = Instantiate(obstacles[randomObstacles], locations[randomLocations].transform.position, locations[randomLocations].transform.rotation);
+                GameObject obstacle = Instantiate(obstacles[randomObstacles], outsideLocations[randomLocations].transform.position, outsideLocations[randomLocations].transform.rotation);
                 obstacle.transform.parent = gameObject.transform;
-                Destroy(locations[randomLocations].GetComponent<ParentLocation>());
-                locations.Remove(locations[randomLocations]);
+                Destroy(outsideLocations[randomLocations].GetComponent<ParentLocation>());
+                outsideLocations.Remove(outsideLocations[randomLocations]);
             }
             else if( i <= 1)
             {
                 GameObject obstacle = Instantiate(obstacles[randomObstacles], outsideLocations[i].transform.position, outsideLocations[i].transform.rotation);
                 obstacle.transform.parent = gameObject.transform;
-                Destroy(outsideLocations[i].GetComponent<ParentLocation>());
-                locations.Remove(outsideLocations[i]);
+                if (i == 1)
+                {
+                    Destroy(outsideLocations[1].GetComponent<ParentLocation>());
+                    outsideLocations.Remove(outsideLocations[1]);
+                    Destroy(outsideLocations[0].GetComponent<ParentLocation>());
+                    outsideLocations.Remove(outsideLocations[0]);
+                }
             }
 
         }

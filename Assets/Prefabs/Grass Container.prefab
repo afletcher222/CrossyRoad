@@ -840,15 +840,12 @@ MonoBehaviour:
   - {fileID: 613647188559331953, guid: a4ecc8edf09aa1547a065e63b1e2de25, type: 3}
   - {fileID: 2754272249779838824, guid: be0d996fbc0b888479a6cd22a1a6de51, type: 3}
   locations:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2443725510907077269}
+  - {fileID: 2443725512230367285}
+  - {fileID: 2443725512016838473}
+  - {fileID: 2443725510686873902}
+  - {fileID: 2443725512087701339}
+  - {fileID: 2443725511847532143}
   outsideLocations:
   - {fileID: 365591898344324522}
   - {fileID: 8799325883658915661}
