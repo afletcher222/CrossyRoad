@@ -10,6 +10,7 @@ public class PlayerMove : MonoBehaviour
     public LayerMask layerMask;
     public Scoring score;
     public Rigidbody rb;
+    public GameObject birdMesh;
 
     public bool canMove;
     public bool canMoveForward;
@@ -262,7 +263,11 @@ public class PlayerMove : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Deathzone")
+        if (other.gameObject.tag == "Car")
+        {
+            birdMesh.SetActive(false);
+        }
+        if (other.gameObject.tag == "Deathzone" || other.gameObject.tag == "Car")
         {
             Death();
         }
@@ -272,7 +277,7 @@ public class PlayerMove : MonoBehaviour
     {
         canMove = false;
         this.gameObject.transform.SetParent(null);
-        this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
+        
         score.CheckHighScore();
         Invoke("StopFalling", 1f);
     }
