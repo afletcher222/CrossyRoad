@@ -45,15 +45,7 @@ public class Scoring : MonoBehaviour
         player = FindObjectOfType<PlayerMove>();
         if (highScore.Count == 0)
         {
-            StreamReader readScore = new StreamReader("Resources/HighScore.txt");
-            StreamReader readName = new StreamReader("Resources/HighScoreName.txt");
-            int reverse = 9;
-            for (int i = 0; i < 10; i++)
-            {
-                highScore.Add(new HighScore { score = int.Parse(readScore.ReadLine()), person = readName.ReadLine() });
-                highScoreResultText[reverse].text = highScore[i].person + ": " + highScore[i].score.ToString();
-                reverse--;
-            }
+            GetHighScore();
         }
         Vector3 scoreCanvas = highScoreCanvas.transform.position;
 
@@ -66,9 +58,17 @@ public class Scoring : MonoBehaviour
     {
         StreamReader readScore = new StreamReader("Resources/HighScore.txt");
         StreamReader readName = new StreamReader("Resources/HighScoreName.txt");
+        int reverse = 9;
         for (int i = 0; i < 10; i++)
         {
+
             highScore.Add(new HighScore { score = int.Parse(readScore.ReadLine()), person = readName.ReadLine() });
+            if (highScore[i].person == "")
+            {
+                highScore[i].person = "[None]";
+            }
+            highScoreResultText[reverse].text = highScore[i].person + ": " + highScore[i].score.ToString();
+            reverse--;
         }
     }
 
@@ -98,6 +98,10 @@ public class Scoring : MonoBehaviour
         StreamWriter writeName = new StreamWriter("./Resources/HighScoreName.txt", false);
         for (int i = 0; i < highScore.Count; i++)
         {
+            if (highScore[i].person == "")
+            {
+                highScore[i].person = "[None]";
+            }
             writeScore.WriteLine(highScore[i].score);
             writeName.WriteLine(highScore[i].person);
         }

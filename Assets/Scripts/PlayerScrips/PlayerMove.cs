@@ -277,7 +277,7 @@ public class PlayerMove : MonoBehaviour
     {
         canMove = false;
         this.gameObject.transform.SetParent(null);
-        
+        this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
         score.CheckHighScore();
         Invoke("StopFalling", 1f);
     }
