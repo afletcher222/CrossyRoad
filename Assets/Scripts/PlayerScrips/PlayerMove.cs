@@ -12,8 +12,8 @@ public class PlayerMove : MonoBehaviour
     public Rigidbody rb;
     public GameObject birdMesh;
     public Vector3 prevPos;
-    public float jumpSpeed;
-    public float jumpHeight;
+    public float jumpSpeed = 20;
+    public float jumpHeight = 0.6f;
 
     public bool canMove;
     public bool canMoveForward;
