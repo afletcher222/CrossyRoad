@@ -89,13 +89,13 @@ public class PlayerMove : MonoBehaviour
     {
         if (moveForward == true)
         {
+            birdMesh.transform.eulerAngles = new Vector3(0, 0, 0);
             RayCastCheckForward();
             
             if (canMoveForward == true)
             {
                 player.transform.position += new Vector3(0, 0, 1);
                 movement++;
-                birdMesh.transform.rotation = new Quaternion(0, 0, 0, 0);
                 if(holdPoints <= 0)
                 {
                     points++;
@@ -126,12 +126,12 @@ public class PlayerMove : MonoBehaviour
         }
         if (moveBackwards == true)
         {
+            birdMesh.transform.eulerAngles = new Vector3(0, 180, 0);
             RayCastCheckBackward();
             
             if (canMoveBackwards == true)
             {
                 player.transform.position -= new Vector3(0, 0, 1);
-                birdMesh.transform.rotation = new Quaternion(0, 180, 0, 0);
                 movement--;
                 holdPoints++;
                 if (colliderMovement > 3)
@@ -144,18 +144,18 @@ public class PlayerMove : MonoBehaviour
         }
         if (moveRight == true)
         {
+            birdMesh.transform.eulerAngles = new Vector3(0, 90, 0);
             RayCastCheckRight();
             if(canMoveRight == true)
             player.transform.position += new Vector3(1, 0, 0);
-            birdMesh.transform.rotation = new Quaternion(0, 90, 0, 0);
             moveRight = false;
         }
         if (moveLeft == true)
         {
+            birdMesh.transform.eulerAngles = new Vector3(0, -90, 0);
             RayCastCheckLeft();
             if(canMoveLeft == true)
             player.transform.position -= new Vector3(1, 0, 0);
-            birdMesh.transform.rotation = new Quaternion(0, -90, 0, 0);
             moveLeft = false;
         }
     }
