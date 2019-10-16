@@ -95,6 +95,7 @@ public class PlayerMove : MonoBehaviour
             {
                 player.transform.position += new Vector3(0, 0, 1);
                 movement++;
+                birdMesh.transform.rotation = new Quaternion(0, 0, 0, 0);
                 if(holdPoints <= 0)
                 {
                     points++;
@@ -130,6 +131,7 @@ public class PlayerMove : MonoBehaviour
             if (canMoveBackwards == true)
             {
                 player.transform.position -= new Vector3(0, 0, 1);
+                birdMesh.transform.rotation = new Quaternion(0, 180, 0, 0);
                 movement--;
                 holdPoints++;
                 if (colliderMovement > 3)
@@ -145,6 +147,7 @@ public class PlayerMove : MonoBehaviour
             RayCastCheckRight();
             if(canMoveRight == true)
             player.transform.position += new Vector3(1, 0, 0);
+            birdMesh.transform.rotation = new Quaternion(0, 90, 0, 0);
             moveRight = false;
         }
         if (moveLeft == true)
@@ -152,6 +155,7 @@ public class PlayerMove : MonoBehaviour
             RayCastCheckLeft();
             if(canMoveLeft == true)
             player.transform.position -= new Vector3(1, 0, 0);
+            birdMesh.transform.rotation = new Quaternion(0, -90, 0, 0);
             moveLeft = false;
         }
     }
