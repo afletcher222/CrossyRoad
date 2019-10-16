@@ -11,6 +11,9 @@ public class PlayerMove : MonoBehaviour
     public Scoring score;
     public Rigidbody rb;
     public GameObject birdMesh;
+    public Vector3 prevPos;
+    public float jumpSpeed;
+    public float jumpHeight;
 
     public bool canMove;
     public bool canMoveForward;
@@ -94,7 +97,9 @@ public class PlayerMove : MonoBehaviour
             
             if (canMoveForward == true)
             {
+                prevPos = Vector3.zero - new Vector3(0, 0, 1);
                 player.transform.position += new Vector3(0, 0, 1);
+                StartCoroutine(MeshMove());
                 movement++;
                 if(holdPoints <= 0)
                 {
@@ -131,7 +136,9 @@ public class PlayerMove : MonoBehaviour
             
             if (canMoveBackwards == true)
             {
+                prevPos = Vector3.zero + new Vector3(0, 0, 1);
                 player.transform.position -= new Vector3(0, 0, 1);
+                StartCoroutine(MeshMove());
                 movement--;
                 holdPoints++;
                 if (colliderMovement > 3)
@@ -147,7 +154,11 @@ public class PlayerMove : MonoBehaviour
             birdMesh.transform.eulerAngles = new Vector3(0, 90, 0);
             RayCastCheckRight();
             if(canMoveRight == true)
-            player.transform.position += new Vector3(1, 0, 0);
+            {
+                prevPos = Vector3.zero - new Vector3(1, 0, 0);
+                player.transform.position += new Vector3(1, 0, 0);
+                StartCoroutine(MeshMove());
+            }
             moveRight = false;
         }
         if (moveLeft == true)
@@ -155,7 +166,11 @@ public class PlayerMove : MonoBehaviour
             birdMesh.transform.eulerAngles = new Vector3(0, -90, 0);
             RayCastCheckLeft();
             if(canMoveLeft == true)
-            player.transform.position -= new Vector3(1, 0, 0);
+            {
+                prevPos = Vector3.zero + new Vector3(1, 0, 0);
+                player.transform.position -= new Vector3(1, 0, 0);
+                StartCoroutine(MeshMove());
+            }
             moveLeft = false;
         }
     }
@@ -291,5 +306,28 @@ public class PlayerMove : MonoBehaviour
     {
         rb.useGravity = false;
         rb.velocity = Vector3.zero;
+    }
+
+    IEnumerator MeshMove()
+    {
+        birdMesh.transform.localPosition = prevPos;
+        Vector3 currentPos = prevPos;
+        float t = 0;
+        while (birdMesh.transform.localPosition != Vector3.zero)
+        {
+            t += Time.deltaTime * jumpSpeed;
+            currentPos = Vector3.Lerp(prevPos, Vector3.zero, t);
+            if (t < .5f)
+            {
+                currentPos.y = Mathf.Lerp(0f, jumpHeight, t * 2);
+            }
+            else
+            {
+                currentPos.y = Mathf.Lerp(jumpHeight, 0f, (t * 2) - 1f);
+            }
+            birdMesh.transform.localPosition = currentPos;
+            yield return null;
+        }
+        yield return null;
     }
 }

@@ -426,9 +426,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Enter your First Name below
-
-'
+  m_Text: Enter your initials below
 --- !u!222 &128985297
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -948,7 +946,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Enter your First Name...
+  m_Text: Enter your Initials...
 --- !u!222 &422211250
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1571,7 +1569,7 @@ MonoBehaviour:
   m_LineType: 0
   m_HideMobileInput: 0
   m_CharacterValidation: 0
-  m_CharacterLimit: 0
+  m_CharacterLimit: 3
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls: []
@@ -1998,6 +1996,9 @@ MonoBehaviour:
   score: {fileID: 42697966}
   rb: {fileID: 687576867}
   birdMesh: {fileID: 38091947}
+  prevPos: {x: 0, y: 0, z: 0}
+  jumpSpeed: 20
+  jumpHeight: 0.6
   canMove: 0
   canMoveForward: 0
   canMoveBackwards: 0
@@ -2094,17 +2095,17 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 4b1ee6e9c02773c4e802d1d8a2870816,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 4b1ee6e9c02773c4e802d1d8a2870816,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 4b1ee6e9c02773c4e802d1d8a2870816,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 4b1ee6e9c02773c4e802d1d8a2870816,
         type: 3}
@@ -2279,7 +2280,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 7.2697893e+22, y: 2.644894e+20, z: 1.707776e+19, w: 7.5562946e+31}
+  m_BoundingSphereOverride: {x: 0.16015625, y: 0.33789062, z: 0.0625, w: -0.033203125}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
