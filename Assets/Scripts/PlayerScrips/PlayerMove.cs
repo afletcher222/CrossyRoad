@@ -303,10 +303,19 @@ public class PlayerMove : MonoBehaviour
         if (other.gameObject.tag == "Car")
         {
             birdMesh.SetActive(false);
+            
         }
         if (other.gameObject.tag == "Deathzone" || other.gameObject.tag == "Car")
         {
             Death();
+            if (other.gameObject.tag == "Car")
+            {
+                DoTheThingCar();
+            }else
+            {
+                DoTheThingWater();
+            }
+            
         }
     }
 
@@ -317,7 +326,7 @@ public class PlayerMove : MonoBehaviour
         this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
         score.CheckHighScore();
         Invoke("StopFalling", 1f);
-        DoTheThing();
+        
        
     }
 
@@ -338,7 +347,7 @@ public class PlayerMove : MonoBehaviour
         cube.GetComponent<Renderer>().material = matBird;
     }
 
-    void DoTheThing()
+    void DoTheThingCar()
     {
         for (int x = 0; x < cubeNum; x++)
         {
@@ -363,7 +372,47 @@ public class PlayerMove : MonoBehaviour
         }
 
     }
-        IEnumerator MeshMove()
+
+    void Splash(int x, int y, int z)
+    {
+        GameObject cube;
+        cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+
+        cube.transform.position = transform.position + new Vector3(cubeSize * x, cubeSize * y, cubeSize * z) - cubesPivot;
+        cube.transform.localScale = new Vector3(cubeSize, cubeSize, cubeSize);
+        cube.AddComponent<Rigidbody>();
+        cube.GetComponent<Rigidbody>().mass = cubeSize;
+        cube.GetComponent<Renderer>().material = matSplash;
+    }
+
+    void DoTheThingWater()
+    {
+        for (int x = 0; x < cubeNum; x++)
+        {
+            for (int y = 0; y < cubeNum; y++)
+            {
+                for (int z = 0; z < cubeNum; z++)
+                {
+                    Splash(x, y, z);
+                }
+            }
+        }
+
+        Vector3 explosionPos = transform.position;
+        Collider[] colliders = Physics.OverlapSphere(explosionPos, explosionRadius);
+        foreach (Collider hit in colliders)
+        {
+            Rigidbody rb = hit.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.AddExplosionForce(explosionForce, transform.position, explosionRadius, explosionUpward);
+            }
+        }
+
+    }
+
+
+    IEnumerator MeshMove()
     {
         birdMesh.transform.localPosition = prevPos;
         Vector3 currentPos = prevPos;
