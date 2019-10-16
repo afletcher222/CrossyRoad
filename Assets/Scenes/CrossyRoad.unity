@@ -2013,6 +2013,13 @@ MonoBehaviour:
   points: 0
   holdPoints: 0
   scoreText: {fileID: 654854891}
+  cubeSize: 0.1
+  cubeNum: 3
+  explosionForce: 25
+  explosionRadius: 5
+  explosionUpward: 0.5
+  matBird: {fileID: 2100000, guid: 9e5f039881a384544bdfe6bf3fdcef87, type: 2}
+  matSplash: {fileID: 2100000, guid: ba87ff11d714d564fb14d80579f6daed, type: 2}
 --- !u!4 &687576865
 Transform:
   m_ObjectHideFlags: 0

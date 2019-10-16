@@ -30,6 +30,20 @@ public class PlayerMove : MonoBehaviour
 
     public Text scoreText;
 
+    public float cubeSize = 0.2f;
+    public int cubeNum = 5;
+
+    float cubesPivotDistance;
+    Vector3 cubesPivot;
+
+    public float explosionForce = 50f;
+    public float explosionRadius = 4f;
+    public float explosionUpward = 0.4f;
+
+    public Material matBird;
+    public Material matSplash;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +57,9 @@ public class PlayerMove : MonoBehaviour
         points = 0;
         scoreText.text = "Score: " + points;
         scoreText.gameObject.SetActive(false);
+
+        cubesPivotDistance = cubeSize * cubeNum / 2;
+        cubesPivot = new Vector3(cubesPivotDistance, cubesPivotDistance, cubesPivotDistance);
     }
 
 
@@ -285,6 +302,8 @@ public class PlayerMove : MonoBehaviour
         this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
         score.CheckHighScore();
         Invoke("StopFalling", 1f);
+        DoTheThing();
+       
     }
 
     void StopFalling()
@@ -292,4 +311,42 @@ public class PlayerMove : MonoBehaviour
         rb.useGravity = false;
         rb.velocity = Vector3.zero;
     }
+
+    void Explode(int x, int y, int z)
+    {
+        GameObject cube;
+        cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        
+        cube.transform.position = transform.position + new Vector3(cubeSize * x, cubeSize * y, cubeSize * z) - cubesPivot;
+        cube.transform.localScale = new Vector3(cubeSize, cubeSize, cubeSize);
+        cube.AddComponent<Rigidbody>();
+        cube.GetComponent<Rigidbody>().mass = cubeSize;
+        cube.GetComponent<Renderer>().material = matBird;
+    } 
+
+    void DoTheThing()
+    {
+        for (int x = 0; x < cubeNum; x++)
+        {
+            for (int y = 0; y < cubeNum; y++)
+            {
+                for (int z = 0; z < cubeNum; z++)
+                {
+                    Explode(x, y, z);
+                }
+            }
+        }
+
+        Vector3 explosionPos = transform.position;
+        Collider[] colliders = Physics.OverlapSphere(explosionPos, explosionRadius);
+        foreach (Collider hit in colliders)
+        {
+            Rigidbody rb = hit.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.AddExplosionForce(explosionForce, transform.position, explosionRadius, explosionUpward);
+            }
+        }
+    }
 }
+
