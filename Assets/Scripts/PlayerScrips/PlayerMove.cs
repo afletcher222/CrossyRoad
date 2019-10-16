@@ -36,7 +36,7 @@ public class PlayerMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Screen.SetResolution(680, 1136, true);
+        Screen.SetResolution(480, 800, false);
         canMove = false;
         canMoveForward = true;
         canMoveBackwards = false;
