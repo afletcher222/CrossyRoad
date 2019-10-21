@@ -7,6 +7,7 @@ public class PlayerMove : MonoBehaviour
     public PlatformSpawner platformSpawner;
     public GameObject player;
     public GameObject startCollider;
+    public GameObject startColliderBeginning;
     public LayerMask layerMask;
     public Scoring score;
     public Rigidbody rb;
@@ -24,6 +25,7 @@ public class PlayerMove : MonoBehaviour
     public bool moveBackwards;
     public bool moveRight;
     public bool moveLeft;
+    public bool backwardsDeath;
 
     public int movement = 0;
     public int colliderMovement;
@@ -57,7 +59,9 @@ public class PlayerMove : MonoBehaviour
         canMoveBackwards = false;
         canMoveLeft = true;
         canMoveRight = true;
+        backwardsDeath = false;
         startCollider.SetActive(true);
+        startColliderBeginning.SetActive(true);
         points = 0;
         scoreText.text = "Score: " + points;
         scoreText.gameObject.SetActive(false);
@@ -137,6 +141,11 @@ public class PlayerMove : MonoBehaviour
                 if (movement == 3)
                 {
                     platformSpawner.EndlessSpawning();
+                    if(backwardsDeath == false)
+                    {
+                        backwardsDeath = true;
+                        startColliderBeginning.SetActive(false);
+                    }
                 }
                 if (movement == 7)
                 {
@@ -318,6 +327,10 @@ public class PlayerMove : MonoBehaviour
                 DoTheThingWater();
             }
             
+        }
+        if(other.gameObject.tag == "RearDeathZone" && backwardsDeath == true)
+        {
+            Death();
         }
     }
 
