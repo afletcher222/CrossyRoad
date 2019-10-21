@@ -2087,7 +2087,7 @@ MonoBehaviour:
   platformSpawner: {fileID: 702306517}
   player: {fileID: 687576863}
   startCollider: {fileID: 1691362766}
-  startColliderBeginning: {fileID: 2111851247}
+  startColliderBeginning: {fileID: 0}
   layerMask:
     serializedVersion: 2
     m_Bits: 257
