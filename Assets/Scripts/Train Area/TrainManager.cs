@@ -21,7 +21,7 @@ public class TrainManager : MonoBehaviour
 
         }
 
-        if (this.transform.position.x >= 13 || this.transform.position.x <= -13)
+        if (this.transform.position.x >= maxX || this.transform.position.x <= -maxX)
         {
             DeSpawn();
         }

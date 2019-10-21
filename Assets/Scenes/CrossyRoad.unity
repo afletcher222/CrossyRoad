@@ -2291,6 +2291,7 @@ MonoBehaviour:
     type: 3}
   roadPlatform: {fileID: 6697693185729108845, guid: a257a49b96267824c821fb93e45616ac,
     type: 3}
+  trainPlatform: {fileID: 0}
   currentPlatform: {fileID: 0}
   platformParent: {fileID: 702306518}
   startLocation: {x: 0, y: 0, z: 0}
