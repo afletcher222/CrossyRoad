@@ -7,6 +7,7 @@ public class PlayerMove : MonoBehaviour
     public PlatformSpawner platformSpawner;
     public GameObject player;
     public GameObject startCollider;
+    public GameObject startColliderBeginning;
     public LayerMask layerMask;
     public Scoring score;
     public Rigidbody rb;
@@ -24,6 +25,7 @@ public class PlayerMove : MonoBehaviour
     public bool moveBackwards;
     public bool moveRight;
     public bool moveLeft;
+    public bool backwardsDeath;
 
     public int movement = 0;
     public int colliderMovement;
@@ -39,9 +41,10 @@ public class PlayerMove : MonoBehaviour
     float cubesPivotDistance;
     Vector3 cubesPivot;
 
-    public float explosionForce = 50f;
+    public float explosionForce = 40f;
     public float explosionRadius = 4f;
-    public float explosionUpward = 0.4f;
+    public float explosionUpward = 1f;
+    public GameObject explosionSource;
 
     public Material matBird;
     public Material matSplash;
@@ -56,7 +59,9 @@ public class PlayerMove : MonoBehaviour
         canMoveBackwards = false;
         canMoveLeft = true;
         canMoveRight = true;
+        backwardsDeath = false;
         startCollider.SetActive(true);
+        startColliderBeginning.SetActive(true);
         points = 0;
         scoreText.text = "Score: " + points;
         scoreText.gameObject.SetActive(false);
@@ -136,6 +141,11 @@ public class PlayerMove : MonoBehaviour
                 if (movement == 3)
                 {
                     platformSpawner.EndlessSpawning();
+                    if(backwardsDeath == false)
+                    {
+                        backwardsDeath = true;
+                        startColliderBeginning.SetActive(false);
+                    }
                 }
                 if (movement == 7)
                 {
@@ -310,12 +320,17 @@ public class PlayerMove : MonoBehaviour
             Death();
             if (other.gameObject.tag == "Car")
             {
+                explosionSource = other.gameObject;
                 DoTheThingCar();
             }else
             {
                 DoTheThingWater();
             }
             
+        }
+        if(other.gameObject.tag == "RearDeathZone" && backwardsDeath == true)
+        {
+            Death();
         }
     }
 
@@ -368,7 +383,7 @@ public class PlayerMove : MonoBehaviour
             Rigidbody rb = hit.GetComponent<Rigidbody>();
             if (rb != null)
             {
-                rb.AddExplosionForce(explosionForce, transform.position, explosionRadius, explosionUpward);
+                rb.AddExplosionForce(explosionForce, explosionSource.transform.position, explosionRadius, explosionUpward);
             }
         }
 
