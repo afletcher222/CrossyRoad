@@ -8,6 +8,7 @@ TagManager:
   - Boundary
   - Deathzone
   - Car
+  - RearDeathZone
   layers:
   - Default
   - TransparentFX
