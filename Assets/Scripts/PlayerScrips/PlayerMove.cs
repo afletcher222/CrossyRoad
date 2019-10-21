@@ -39,9 +39,10 @@ public class PlayerMove : MonoBehaviour
     float cubesPivotDistance;
     Vector3 cubesPivot;
 
-    public float explosionForce = 50f;
+    public float explosionForce = 40f;
     public float explosionRadius = 4f;
-    public float explosionUpward = 0.4f;
+    public float explosionUpward = 1f;
+    public GameObject explosionSource;
 
     public Material matBird;
     public Material matSplash;
@@ -310,6 +311,7 @@ public class PlayerMove : MonoBehaviour
             Death();
             if (other.gameObject.tag == "Car")
             {
+                explosionSource = other.gameObject;
                 DoTheThingCar();
             }else
             {
@@ -368,7 +370,7 @@ public class PlayerMove : MonoBehaviour
             Rigidbody rb = hit.GetComponent<Rigidbody>();
             if (rb != null)
             {
-                rb.AddExplosionForce(explosionForce, transform.position, explosionRadius, explosionUpward);
+                rb.AddExplosionForce(explosionForce, explosionSource.transform.position, explosionRadius, explosionUpward);
             }
         }
 
