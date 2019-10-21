@@ -39,7 +39,8 @@ public class TrainSpawner : MonoBehaviour
         trainSpawnTime = Time.time;
         GameObject car = Instantiate(trainPrefab, trainSpawnPoints[randomSpawnPoint].position, trainSpawnPoints[randomSpawnPoint].rotation);
         car.transform.SetParent(track);
-        car.GetComponent<CarManager>().randomSpeed = trainSpeed + 3;
+        car.GetComponent<TrainManager>().speed = trainSpeed;
+        car.GetComponent<TrainManager>().maxX = trainSpawnPoints[0].position.x;
     }
 
     private bool ShouldSpawn()

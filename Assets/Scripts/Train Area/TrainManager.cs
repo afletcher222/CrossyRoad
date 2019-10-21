@@ -4,15 +4,31 @@ using UnityEngine;
 
 public class TrainManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public bool trainGoingRight;
+    public int speed;
+    public float maxX;
 
-    // Update is called once per frame
+
     void Update()
     {
-        
+        if (trainGoingRight == true)
+        {
+            transform.position += (transform.up * speed * Time.deltaTime);
+        }
+        else
+        {
+            transform.position -= transform.up * speed * Time.deltaTime;
+
+        }
+
+        if (this.transform.position.x >= 13 || this.transform.position.x <= -13)
+        {
+            DeSpawn();
+        }
+    }
+
+    private void DeSpawn()
+    {
+        Destroy(this.gameObject);
     }
 }
