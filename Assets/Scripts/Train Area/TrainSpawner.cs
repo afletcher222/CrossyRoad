@@ -11,10 +11,9 @@ public class TrainSpawner : MonoBehaviour
 
     public int randomSpawnPoint;
     public int trainSpeed;
-    //public int carSpawnRandom;
 
     public GameObject trainPrefab;
-    //public GameObject roadLines;
+    public GameObject lightObj;
 
     public float startDelay;
 
@@ -22,10 +21,8 @@ public class TrainSpawner : MonoBehaviour
     {
         startDelay = Random.Range(0f, trainLoopTime);
         randomSpawnPoint = Random.Range(0, 2);
-        //carSpawnRandom = Random.Range(1, 4);
     }
 
-    // Update is called once per frame
     void Update()
     {
         startDelay += Time.deltaTime;
@@ -37,16 +34,37 @@ public class TrainSpawner : MonoBehaviour
 
     private void Spawn()
     {
-        //trainLoopTime = Time.time;
         GameObject car = Instantiate(trainPrefab, trainSpawnPoints[randomSpawnPoint].position, trainSpawnPoints[randomSpawnPoint].rotation);
         car.transform.SetParent(track);
         car.GetComponent<TrainManager>().speed = trainSpeed;
         car.GetComponent<TrainManager>().maxX = trainSpawnPoints[0].position.x;
         startDelay = 0f;
+        StartCoroutine(FlashLight());
     }
 
     private bool ShouldSpawn()
     {
         return startDelay >= trainLoopTime;
+    }
+
+    IEnumerator FlashLight()
+    {
+        lightObj.SetActive(true);
+        yield return new WaitForSeconds(.25f);
+        lightObj.SetActive(false);
+        yield return new WaitForSeconds(.25f);
+        lightObj.SetActive(true);
+        yield return new WaitForSeconds(.25f);
+        lightObj.SetActive(false);
+        yield return new WaitForSeconds(.25f);
+        lightObj.SetActive(true);
+        yield return new WaitForSeconds(.25f);
+        lightObj.SetActive(false);
+        yield return new WaitForSeconds(.25f);
+        lightObj.SetActive(true);
+        yield return new WaitForSeconds(.25f);
+        lightObj.SetActive(false);
+        yield return new WaitForSeconds(.25f);
+        yield return null;
     }
 }
