@@ -6481,6 +6481,7 @@ MonoBehaviour:
   carNum02Prefab: {fileID: 3403482427746362342, guid: aa757794a18bb81468215bef50ca0214,
     type: 3}
   roadLines: {fileID: 204049082692124902}
+  trainTracks: {fileID: 5181276377140333836}
 --- !u!1 &6825726969674111803
 GameObject:
   m_ObjectHideFlags: 0
