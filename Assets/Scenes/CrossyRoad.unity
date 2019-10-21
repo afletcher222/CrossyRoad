@@ -2087,7 +2087,7 @@ MonoBehaviour:
   platformSpawner: {fileID: 702306517}
   player: {fileID: 687576863}
   startCollider: {fileID: 1691362766}
-  startColliderBeginning: {fileID: 2111851247}
+  startColliderBeginning: {fileID: 0}
   layerMask:
     serializedVersion: 2
     m_Bits: 257
@@ -2292,7 +2292,8 @@ MonoBehaviour:
     type: 3}
   roadPlatform: {fileID: 6697693185729108845, guid: a257a49b96267824c821fb93e45616ac,
     type: 3}
-  trainPlatform: {fileID: 0}
+  trainPlatform: {fileID: 7426542338293785871, guid: 95d5799ec33bba14aa276a0f903ff499,
+    type: 3}
   currentPlatform: {fileID: 0}
   platformParent: {fileID: 702306518}
   startLocation: {x: 0, y: 0, z: 0}
@@ -4897,7 +4898,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: [{fileID: 2111851248}]
+  m_Children:
+  - {fileID: 2111851248}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
