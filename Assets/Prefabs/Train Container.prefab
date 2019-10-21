@@ -3172,7 +3172,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7426542338293785871}
-  - component: {fileID: 5067259261511891369}
+  - component: {fileID: 8588909100246568396}
   m_Layer: 0
   m_Name: Train Container
   m_TagString: Untagged
@@ -3202,7 +3202,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5067259261511891369
+--- !u!114 &8588909100246568396
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3211,22 +3211,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 6922658660778971220}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a7f51e88c4ddea4aa95a3022a1913f4, type: 3}
+  m_Script: {fileID: 11500000, guid: 94ce117fa61597a4caaae4ab8a42aba4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carSpawnTime: 0
-  road: {fileID: 7426542338293785871}
-  carSpawnPoints:
+  trainLoopTime: 10
+  track: {fileID: 7426542338293785871}
+  trainSpawnPoints:
   - {fileID: 4315183603603384915}
   - {fileID: 4315183603305836807}
   randomSpawnPoint: 0
-  randomCarSpeed: 0
-  carSpawnRandom: 0
-  carNum01Prefab: {fileID: 300938435391709705, guid: 645adb42eee623542b3c6a03892dbf6f,
+  trainSpeed: 5
+  trainPrefab: {fileID: 6349786897772755946, guid: 988a239b25a9aa44d9d3ab02ba3fba65,
     type: 3}
-  carNum02Prefab: {fileID: 3403482427746362342, guid: aa757794a18bb81468215bef50ca0214,
-    type: 3}
-  roadLines: {fileID: 4122606824854503044}
 --- !u!1 &6974052316031951329
 GameObject:
   m_ObjectHideFlags: 0

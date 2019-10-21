@@ -2116,6 +2116,7 @@ MonoBehaviour:
   explosionForce: 25
   explosionRadius: 5
   explosionUpward: 0.5
+  explosionSource: {fileID: 0}
   matBird: {fileID: 2100000, guid: 9e5f039881a384544bdfe6bf3fdcef87, type: 2}
   matSplash: {fileID: 2100000, guid: ba87ff11d714d564fb14d80579f6daed, type: 2}
 --- !u!4 &687576865
@@ -2289,6 +2290,7 @@ MonoBehaviour:
     type: 3}
   roadPlatform: {fileID: 6697693185729108845, guid: a257a49b96267824c821fb93e45616ac,
     type: 3}
+  trainPlatform: {fileID: 0}
   currentPlatform: {fileID: 0}
   platformParent: {fileID: 702306518}
   startLocation: {x: 0, y: 0, z: 0}

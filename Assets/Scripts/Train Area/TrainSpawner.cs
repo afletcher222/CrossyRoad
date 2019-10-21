@@ -4,30 +4,31 @@ using UnityEngine;
 
 public class TrainSpawner : MonoBehaviour
 {
-    public float trainSpawnTime;
+    public float trainLoopTime;
 
     public Transform track;
     public Transform[] trainSpawnPoints = new Transform[2];
 
     public int randomSpawnPoint;
     public int trainSpeed;
-    public int carSpawnRandom;
+    //public int carSpawnRandom;
 
     public GameObject trainPrefab;
-    public GameObject roadLines;
+    //public GameObject roadLines;
 
-    float timeDelay = 0f;
+    public float startDelay;
 
     void Awake()
     {
+        startDelay = Random.Range(0f, trainLoopTime);
         randomSpawnPoint = Random.Range(0, 2);
-        carSpawnRandom = Random.Range(1, 4);
+        //carSpawnRandom = Random.Range(1, 4);
     }
 
     // Update is called once per frame
     void Update()
     {
-        timeDelay += Time.deltaTime;
+        startDelay += Time.deltaTime;
         if (ShouldSpawn())
         {
             Spawn();
@@ -36,15 +37,16 @@ public class TrainSpawner : MonoBehaviour
 
     private void Spawn()
     {
-        trainSpawnTime = Time.time;
+        //trainLoopTime = Time.time;
         GameObject car = Instantiate(trainPrefab, trainSpawnPoints[randomSpawnPoint].position, trainSpawnPoints[randomSpawnPoint].rotation);
         car.transform.SetParent(track);
         car.GetComponent<TrainManager>().speed = trainSpeed;
         car.GetComponent<TrainManager>().maxX = trainSpawnPoints[0].position.x;
+        startDelay = 0f;
     }
 
     private bool ShouldSpawn()
     {
-        return Time.deltaTime >= trainSpawnTime;
+        return startDelay >= trainLoopTime;
     }
 }
