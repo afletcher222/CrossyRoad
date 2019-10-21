@@ -345,6 +345,7 @@ public class PlayerMove : MonoBehaviour
         cube.AddComponent<Rigidbody>();
         cube.GetComponent<Rigidbody>().mass = cubeSize;
         cube.GetComponent<Renderer>().material = matBird;
+        cube.AddComponent<DestroyOnTime>();
     }
 
     void DoTheThingCar()
@@ -383,6 +384,7 @@ public class PlayerMove : MonoBehaviour
         cube.AddComponent<Rigidbody>();
         cube.GetComponent<Rigidbody>().mass = cubeSize;
         cube.GetComponent<Renderer>().material = matSplash;
+        cube.AddComponent<DestroyOnTime>();
     }
 
     void DoTheThingWater()
