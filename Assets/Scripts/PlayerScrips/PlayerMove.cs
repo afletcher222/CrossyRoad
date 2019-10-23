@@ -26,7 +26,7 @@ public class PlayerMove : MonoBehaviour
     public bool moveRight;
     public bool moveLeft;
     public bool backwardsDeath;
-    public bool firstMovement;
+    public bool cameraFreeze;
 
     public int movement = 0;
     public int colliderMovement;
@@ -56,7 +56,7 @@ public class PlayerMove : MonoBehaviour
     void Start()
     {
         Screen.SetResolution(480, 800, false);
-        firstMovement = false;
+        cameraFreeze = true;
         canMove = false;
         canMoveForward = true;
         canMoveBackwards = false;
@@ -78,7 +78,7 @@ public class PlayerMove : MonoBehaviour
     {
         if (canMove == true)
         {
-            if (firstMovement == true)
+            if (cameraFreeze == false)
             {
                 cameraMove += Time.deltaTime;
             }
@@ -131,9 +131,9 @@ public class PlayerMove : MonoBehaviour
                 StartCoroutine(MeshMove());
                 movement++;
                 cameraMove = 0;
-                if(firstMovement == false)
+                if(cameraFreeze == true)
                 {
-                    firstMovement = true;
+                    cameraFreeze = false;
                 }
                 if(holdPoints <= 0)
                 {
@@ -349,6 +349,8 @@ public class PlayerMove : MonoBehaviour
     public void Death()
     {
         canMove = false;
+        cameraFreeze = true;
+        cameraMove = 0;
         this.gameObject.transform.SetParent(null);
         this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
         score.CheckHighScore();

@@ -16,7 +16,7 @@ public class PlatformSpawner : MonoBehaviour
     public Vector3 startLocation = new Vector3 (0,0,0);
     public Vector3 spawnLocation;
 
-    public int numberOfPlatforms = 14;
+    public int numberOfPlatforms = 18;
     public int platformsToRemove = 0;
     public int removeAmount;
 
