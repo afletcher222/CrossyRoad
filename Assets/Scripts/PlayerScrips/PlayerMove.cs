@@ -27,6 +27,8 @@ public class PlayerMove : MonoBehaviour
     public bool moveLeft;
     public bool backwardsDeath;
     public bool cameraFreeze;
+    public bool eagleAttack;
+
 
     public int movement = 0;
     public int colliderMovement;
@@ -63,6 +65,7 @@ public class PlayerMove : MonoBehaviour
         canMoveLeft = true;
         canMoveRight = true;
         backwardsDeath = false;
+        eagleAttack = false;
         startCollider.SetActive(true);
         startColliderBeginning.SetActive(true);
         points = 0;
@@ -342,7 +345,8 @@ public class PlayerMove : MonoBehaviour
         }
         if(other.gameObject.tag == "RearDeathZone" && backwardsDeath == true)
         {
-            Death();
+            eagleAttack = true;
+            //Death();
         }
     }
 
