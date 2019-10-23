@@ -7,15 +7,17 @@ public class EagleController : MonoBehaviour
 
     public PlayerMove playerMove;
 
-    
-    public Transform Player;
+    public Transform endLocation;
+    public Transform player;
     public float eagleSpeed = 5.0f, MoveSpeed = 3.0f;
 
     void Update()
     {
         if (playerMove.eagleAttack == true)
         {
+            playerMove.eagleAttack = false;
             gameObject.transform.SetParent(null);
+            endLocation.SetParent(null);
             StartCoroutine(EagleAttacks());
         }
     }
@@ -23,27 +25,31 @@ public class EagleController : MonoBehaviour
    IEnumerator EagleAttacks()
     {
        Vector3 startPos = transform.position;
-       Vector3 targetPos = Player.position;
+       Vector3 targetPos = player.position;
         targetPos.y += 1;
         transform.LookAt(targetPos);
         float t = 0;
 
-        while (transform.position.z > Player.position.z)
+        while (transform.position.z > player.position.z)
         {
             t += Time.deltaTime * eagleSpeed;
             transform.position = Vector3.Lerp(startPos, targetPos, t);
             yield return null;
         }
-        Player.SetParent(this.gameObject.transform);
+        player.GetComponent<CapsuleCollider>().enabled = false;
+        player.GetComponent<Rigidbody>().useGravity = false;
+        player.SetParent(this.gameObject.transform);
 
         startPos = transform.position;
-        targetPos = transform.position;
-        targetPos.z -= 5;
-
-        while (transform.position.z > transform.position.z - 5)
+        targetPos = endLocation.position;
+        //targetPos.z -= 5;
+        //transform.LookAt(targetPos);
+        t = 0;
+        while (transform.position.z > targetPos.z)
         {
-            t += Time.deltaTime * eagleSpeed;
+            t += Time.deltaTime * eagleSpeed * 2;
             transform.position = Vector3.Lerp(startPos, targetPos, t);
+            //transform.LookAt(targetPos);
             yield return null;
         }
 
