@@ -1577,6 +1577,16 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 687576864}
+    - target: {fileID: 5276957157798409620, guid: 3b26170da2ba74e41b1482534e7e0065,
+        type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 687576865}
+    - target: {fileID: 5276957157798409620, guid: 3b26170da2ba74e41b1482534e7e0065,
+        type: 3}
+      propertyPath: playerMove
+      value: 
+      objectReference: {fileID: 687576864}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b26170da2ba74e41b1482534e7e0065, type: 3}
 --- !u!1 &516742890
@@ -2292,7 +2302,7 @@ MonoBehaviour:
   explosionForce: 25
   explosionRadius: 4
   explosionUpward: 0.4
-  explosionSource: {fileID: 0}
+  explosionSource: {x: 0, y: 0, z: 0}
   matBird: {fileID: 2100000, guid: 9e5f039881a384544bdfe6bf3fdcef87, type: 2}
   matSplash: {fileID: 2100000, guid: ba87ff11d714d564fb14d80579f6daed, type: 2}
 --- !u!4 &687576865

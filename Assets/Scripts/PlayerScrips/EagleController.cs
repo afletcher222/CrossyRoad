@@ -5,29 +5,50 @@ using UnityEngine;
 public class EagleController : MonoBehaviour
 {
 
-    public PlayerMove player;
+    public PlayerMove playerMove;
 
     
-    Transform tr_Player;
-    public float eagleSpeed = 3.0f, MoveSpeed = 3.0f;
+    public Transform Player;
+    public float eagleSpeed = 5.0f, MoveSpeed = 3.0f;
 
     void Update()
     {
-        if (player.eagleAttack == true)
+        if (playerMove.eagleAttack == true)
         {
             gameObject.transform.SetParent(null);
-            EagleAttacks();
+            StartCoroutine(EagleAttacks());
         }
     }
 
-    void EagleAttacks()
+   IEnumerator EagleAttacks()
     {
+       Vector3 startPos = transform.position;
+       Vector3 targetPos = Player.position;
+        targetPos.y += 1;
+        transform.LookAt(targetPos);
+        float t = 0;
 
+        while (transform.position.z > Player.position.z)
+        {
+            t += Time.deltaTime * eagleSpeed;
+            transform.position = Vector3.Lerp(startPos, targetPos, t);
+            yield return null;
+        }
+        Player.SetParent(this.gameObject.transform);
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(tr_Player.position - transform.position)
-                                       , eagleSpeed * Time.deltaTime);
+        startPos = transform.position;
+        targetPos = transform.position;
+        targetPos.z -= 5;
 
-        transform.position += transform.forward * eagleSpeed * Time.deltaTime;
+        while (transform.position.z > transform.position.z - 5)
+        {
+            t += Time.deltaTime * eagleSpeed;
+            transform.position = Vector3.Lerp(startPos, targetPos, t);
+            yield return null;
+        }
 
+        playerMove.score.CheckHighScore();
+
+        yield return null;
     }
 }

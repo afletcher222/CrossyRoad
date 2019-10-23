@@ -339,6 +339,9 @@ public class PlayerMove : MonoBehaviour
         }
         else if(other.gameObject.tag == "RearDeathZone")
         {
+            canMove = false;
+            cameraFreeze = true;
+            cameraMove = 0;
             eagleAttack = true;
             //Death();
         }
