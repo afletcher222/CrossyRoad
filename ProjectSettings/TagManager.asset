@@ -7,8 +7,9 @@ TagManager:
   - Obstacle
   - Boundary
   - Deathzone
-  - Car
   - RearDeathZone
+  - Vehicle
+  - Car
   layers:
   - Default
   - TransparentFX

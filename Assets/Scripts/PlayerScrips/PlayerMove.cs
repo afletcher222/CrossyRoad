@@ -46,7 +46,7 @@ public class PlayerMove : MonoBehaviour
     public float explosionForce = 40f;
     public float explosionRadius = 4f;
     public float explosionUpward = 1f;
-    public GameObject explosionSource;
+    public Vector3 explosionSource;
 
     public Material matBird;
     public Material matSplash;
@@ -322,25 +322,20 @@ public class PlayerMove : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Car")
-        {
-            birdMesh.SetActive(false);
-            
-        }
-        if (other.gameObject.tag == "Deathzone" || other.gameObject.tag == "Car")
+        if (other.gameObject.tag == "Vehicle")
         {
             Death();
-            if (other.gameObject.tag == "Car")
-            {
-                explosionSource = other.gameObject;
-                DoTheThingCar();
-            }else
-            {
-                DoTheThingWater();
-            }
-            
+            birdMesh.SetActive(false);
+            explosionSource = Vector3.Lerp(transform.position, other.gameObject.transform.position, 0.1f);
+            //explosionForce = 50f;
+            ExplosionCar();
         }
-        if(other.gameObject.tag == "RearDeathZone" && backwardsDeath == true)
+        else if (other.gameObject.tag == "Deathzone")
+        {
+            Death();
+            ExplosionWater();
+        }
+        else if(other.gameObject.tag == "RearDeathZone" && backwardsDeath == true)
         {
             Death();
         }
@@ -377,7 +372,7 @@ public class PlayerMove : MonoBehaviour
         cube.AddComponent<DestroyOnTime>();
     }
 
-    void DoTheThingCar()
+    void ExplosionCar()
     {
         for (int x = 0; x < cubeNum; x++)
         {
@@ -397,7 +392,7 @@ public class PlayerMove : MonoBehaviour
             Rigidbody rb = hit.GetComponent<Rigidbody>();
             if (rb != null)
             {
-                rb.AddExplosionForce(explosionForce, explosionSource.transform.position, explosionRadius, explosionUpward);
+                rb.AddExplosionForce(explosionForce, explosionSource, explosionRadius, explosionUpward);
             }
         }
 
@@ -416,7 +411,7 @@ public class PlayerMove : MonoBehaviour
         cube.AddComponent<DestroyOnTime>();
     }
 
-    void DoTheThingWater()
+    void ExplosionWater()
     {
         for (int x = 0; x < cubeNum; x++)
         {
