@@ -22,7 +22,7 @@ public class CameraTarrgetmovementScript : MonoBehaviour
             newPosition += (transform.forward * speed * Time.deltaTime);
             transform.position = newPosition;
         }
-        if(newPosition.z < playerCameraTarget.transform.position.z)
+        if(transform.position.z < playerCameraTarget.transform.position.z)
         {
             newPosition = transform.position;
             newPosition.z = playerCameraTarget.transform.position.z + offset;
