@@ -2107,11 +2107,13 @@ MonoBehaviour:
   moveRight: 0
   moveLeft: 0
   backwardsDeath: 0
+  firstMovement: 0
   movement: 0
   colliderMovement: 0
   timeBetweenMoves: 0.1
   points: 0
   holdPoints: 0
+  cameraMove: 0
   scoreText: {fileID: 654854891}
   cubeSize: 0.2
   cubeNum: 5
@@ -3717,7 +3719,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1175999030}
-  - component: {fileID: 1175999031}
   m_Layer: 0
   m_Name: playerCameraTarget
   m_TagString: Untagged
@@ -3739,22 +3740,6 @@ Transform:
   m_Father: {fileID: 687576865}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1175999031
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1175999029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2639503b1e5d44c40b37ac18888049e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 687576863}
-  speed: 0.5
-  offset: 0.1
-  horizontalOffset: 1
 --- !u!1 &1184168477
 GameObject:
   m_ObjectHideFlags: 0
@@ -5869,10 +5854,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2639503b1e5d44c40b37ac18888049e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1175999029}
+  playerCameraTarget: {fileID: 1175999029}
   speed: 0.5
   offset: 0.1
   horizontalOffset: 1
+  player: {fileID: 687576864}
 --- !u!1 &2111851247
 GameObject:
   m_ObjectHideFlags: 0
