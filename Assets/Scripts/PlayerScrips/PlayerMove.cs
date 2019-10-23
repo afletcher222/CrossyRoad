@@ -327,7 +327,6 @@ public class PlayerMove : MonoBehaviour
             Death();
             birdMesh.SetActive(false);
             explosionSource = Vector3.Lerp(transform.position, other.gameObject.transform.position, 0.1f);
-            //explosionForce = 50f;
             ExplosionCar();
         }
         else if (other.gameObject.tag == "Deathzone")
@@ -350,8 +349,6 @@ public class PlayerMove : MonoBehaviour
         this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
         score.CheckHighScore();
         Invoke("StopFalling", 1f);
-        
-       
     }
 
     void StopFalling()
