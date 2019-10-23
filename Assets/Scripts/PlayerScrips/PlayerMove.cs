@@ -37,15 +37,15 @@ public class PlayerMove : MonoBehaviour
 
     public Text scoreText;
 
-    public float cubeSize = 0.2f;
-    public int cubeNum = 5;
+    public float cubeSize = 0.1f;
+    public int cubeNum = 3;
 
     float cubesPivotDistance;
     Vector3 cubesPivot;
 
-    public float explosionForce = 40f;
+    public float explosionForce = 25;
     public float explosionRadius = 4f;
-    public float explosionUpward = 1f;
+    public float explosionUpward = 0.4f;
     public Vector3 explosionSource;
 
     public Material matBird;
