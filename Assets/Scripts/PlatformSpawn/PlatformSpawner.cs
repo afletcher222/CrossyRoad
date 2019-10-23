@@ -9,6 +9,7 @@ public class PlatformSpawner : MonoBehaviour
     public Transform grassPlatform;
     public Transform waterPlatform;
     public Transform roadPlatform;
+    public Transform trainPlatform;
     public Transform currentPlatform;
     public Transform platformParent;
 
@@ -33,7 +34,7 @@ public class PlatformSpawner : MonoBehaviour
         {
             if (i > 0)
             {
-                int random = Random.Range(1, 4);
+                int random = Random.Range(1, 5);
 
                 switch(random)
                 {
@@ -50,6 +51,12 @@ public class PlatformSpawner : MonoBehaviour
                         roadLanes = false;
                         break;
                     case 3:
+                        Transform train = Instantiate(trainPlatform, spawnLocation, Quaternion.identity);
+                        train.SetParent(platformParent);
+                        platformList.Add(train);
+                        roadLanes = false;
+                        break;
+                    case 4:
                         Transform road = Instantiate(roadPlatform, spawnLocation, Quaternion.identity);
                         road.SetParent(platformParent);
                         platformList.Add(road);
