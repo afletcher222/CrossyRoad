@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3483976507158545275}
   - component: {fileID: 5674644118985803597}
   - component: {fileID: 5106143879446814581}
+  - component: {fileID: 6537677166485887590}
   m_Layer: 0
   m_Name: Box01
   m_TagString: Untagged
@@ -77,6 +78,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &6537677166485887590
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7201805571465091319}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 35, y: 35, z: 45}
+  m_Center: {x: 0, y: 0.55615056, z: -10}
 --- !u!1 &8529654430554858846
 GameObject:
   m_ObjectHideFlags: 0
@@ -87,7 +101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 581678525241592125}
   m_Layer: 0
-  m_Name: 10017_Eagle_v1_max2011_it2
+  m_Name: eagle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
