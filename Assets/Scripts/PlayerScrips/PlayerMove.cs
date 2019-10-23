@@ -80,7 +80,7 @@ public class PlayerMove : MonoBehaviour
         {
             if (firstMovement == true)
             {
-                cameraMove = Time.deltaTime;
+                cameraMove += Time.deltaTime;
             }
             if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
             {

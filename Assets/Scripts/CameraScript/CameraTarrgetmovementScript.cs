@@ -7,7 +7,6 @@ public class CameraTarrgetmovementScript : MonoBehaviour
     public GameObject playerCameraTarget;
     public float speed;
     public float offset;
-    public float horizontalOffset;
     public PlayerMove player;
     Vector3 newPosition;
     // Start is called before the first frame update
@@ -18,7 +17,7 @@ public class CameraTarrgetmovementScript : MonoBehaviour
         if (player.cameraMove > 3)
         {
             newPosition = transform.position;
-            newPosition.x = playerCameraTarget.transform.position.x + horizontalOffset;
+            newPosition.x = playerCameraTarget.transform.position.x;
             newPosition += (transform.forward * speed * Time.deltaTime);
             transform.position = newPosition;
         }
