@@ -26,12 +26,14 @@ public class PlayerMove : MonoBehaviour
     public bool moveRight;
     public bool moveLeft;
     public bool backwardsDeath;
+    public bool firstMovement;
 
     public int movement = 0;
     public int colliderMovement;
     public float timeBetweenMoves;
     public int points;
     public int holdPoints;
+    public float cameraMove;
 
     public Text scoreText;
 
@@ -54,6 +56,7 @@ public class PlayerMove : MonoBehaviour
     void Start()
     {
         Screen.SetResolution(480, 800, false);
+        firstMovement = false;
         canMove = false;
         canMoveForward = true;
         canMoveBackwards = false;
@@ -75,6 +78,10 @@ public class PlayerMove : MonoBehaviour
     {
         if (canMove == true)
         {
+            if (firstMovement == true)
+            {
+                cameraMove = Time.deltaTime;
+            }
             if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
             {
                 //moveForward = true;
@@ -123,6 +130,11 @@ public class PlayerMove : MonoBehaviour
                 player.transform.position += new Vector3(0, 0, 1);
                 StartCoroutine(MeshMove());
                 movement++;
+                cameraMove = 0;
+                if(firstMovement == false)
+                {
+                    firstMovement = true;
+                }
                 if(holdPoints <= 0)
                 {
                     points++;
