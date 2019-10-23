@@ -27,5 +27,11 @@ public class CameraTarrgetmovementScript : MonoBehaviour
             newPosition.z = playerCameraTarget.transform.position.z + offset;
             transform.position = newPosition;
         }
+        else
+        {
+            newPosition = transform.position;
+            newPosition.x = playerCameraTarget.transform.position.x;
+            transform.position = newPosition;
+        }
     }
 }
