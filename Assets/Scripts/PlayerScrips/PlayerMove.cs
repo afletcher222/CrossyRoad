@@ -334,7 +334,7 @@ public class PlayerMove : MonoBehaviour
             Death();
             ExplosionWater();
         }
-        else if(other.gameObject.tag == "RearDeathZone" && backwardsDeath == true)
+        else if(other.gameObject.tag == "RearDeathZone")
         {
             Death();
         }
