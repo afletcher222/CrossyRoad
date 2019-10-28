@@ -4494,7 +4494,7 @@ GameObject:
   - component: {fileID: 7636022982435223336}
   - component: {fileID: 1433370401643308471}
   - component: {fileID: 6834634855490813497}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Boundary
   m_TagString: Boundary
   m_Icon: {fileID: 0}

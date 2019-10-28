@@ -9,6 +9,7 @@ TagManager:
   - Deathzone
   - RearDeathZone
   - Vehicle
+  - Train
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - 
   - Obstacle
   - Location
-  - 
+  - Explosions
   - 
   - 
   - 
