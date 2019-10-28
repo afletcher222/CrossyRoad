@@ -44,20 +44,26 @@ public class CarSpawner : MonoBehaviour
         if (carSpawnRandom >= 3)
         {
             carSpawnTime = Time.time + random;
-            //Instantiate(carNum01Prefab, transform.position, Quaternion.Euler(-90,90,0));
             GameObject car = Instantiate(carNum01Prefab, carSpawnPoints[randomSpawnPoint].position, carSpawnPoints[randomSpawnPoint].rotation);
             car.transform.SetParent(road);
+<<<<<<< HEAD
             car.GetComponent<CarManager>().randomSpeed = randomCarSpeed + 4f;
             //car.transform.LookAt();
+=======
+            car.GetComponent<CarManager>().randomSpeed = randomCarSpeed + 3;
+>>>>>>> 86e52908fab2e5fc97b5eabf9fe892caf2b2f70c
         }
         if (carSpawnRandom < 3)
         {
             carSpawnTime = Time.time + random;
-            //Instantiate(carNum01Prefab, transform.position, Quaternion.Euler(-90,90,0));
             GameObject car = Instantiate(carNum02Prefab, carSpawnPoints[randomSpawnPoint].position, carSpawnPoints[randomSpawnPoint].rotation);
             car.transform.SetParent(road);
+<<<<<<< HEAD
             car.GetComponent<CarManager>().randomSpeed = randomCarSpeed + 2f;
             //car.transform.LookAt();
+=======
+            car.GetComponent<CarManager>().randomSpeed = randomCarSpeed+1;
+>>>>>>> 86e52908fab2e5fc97b5eabf9fe892caf2b2f70c
         }
     }
 
