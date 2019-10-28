@@ -13,6 +13,8 @@ public class PlayerMove : MonoBehaviour
     public Rigidbody rb;
     public GameObject birdMesh;
     public Vector3 prevPos;
+    public Vector3 cameraCheck;
+
     public float jumpSpeed = 20;
     public float jumpHeight = 0.6f;
 
@@ -74,6 +76,7 @@ public class PlayerMove : MonoBehaviour
 
         cubesPivotDistance = cubeSize * cubeNum / 2;
         cubesPivot = new Vector3(cubesPivotDistance, cubesPivotDistance, cubesPivotDistance);
+        cameraCheck = transform.position;
     }
 
 
@@ -133,7 +136,11 @@ public class PlayerMove : MonoBehaviour
                 player.transform.position += new Vector3(0, 0, 1);
                 StartCoroutine(MeshMove());
                 movement++;
-                cameraMove = 0;
+                if(transform.position.x > cameraCheck.x)
+                {
+                    cameraCheck = transform.position;
+                    cameraMove = 0;
+                }
                 if(cameraFreeze == true)
                 {
                     cameraFreeze = false;
