@@ -9,7 +9,6 @@ TagManager:
   - Deathzone
   - RearDeathZone
   - Vehicle
-  - Car
   - Train
   layers:
   - Default
