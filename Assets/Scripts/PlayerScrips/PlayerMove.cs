@@ -342,7 +342,7 @@ public class PlayerMove : MonoBehaviour
         else if (other.gameObject.tag == "Deathzone")
         {
             Death();
-            ExplosionWater();
+            WaterSplash();
         }
         else if(other.gameObject.tag == "RearDeathZone")
         {
@@ -350,7 +350,6 @@ public class PlayerMove : MonoBehaviour
             cameraFreeze = true;
             cameraMove = 0;
             eagleAttack = true;
-            //Death();
         }
     }
 
@@ -422,7 +421,7 @@ public class PlayerMove : MonoBehaviour
         cube.AddComponent<DestroyOnTime>();
     }
 
-    void ExplosionWater()
+    void WaterSplash()
     {
         for (int x = 0; x < cubeNum; x++)
         {
