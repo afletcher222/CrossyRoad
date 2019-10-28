@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class PlayerMove : MonoBehaviour
 {
+    #region VariableDeclarations
     public PlatformSpawner platformSpawner;
     public GameObject player;
     public GameObject startCollider;
@@ -54,7 +55,7 @@ public class PlayerMove : MonoBehaviour
 
     public Material matBird;
     public Material matSplash;
-
+    #endregion
 
     // Start is called before the first frame update
     void Start()
@@ -78,7 +79,6 @@ public class PlayerMove : MonoBehaviour
         cubesPivot = new Vector3(cubesPivotDistance, cubesPivotDistance, cubesPivotDistance);
         cameraCheck = transform.position;
     }
-
 
     void Update()
     {
@@ -111,9 +111,8 @@ public class PlayerMove : MonoBehaviour
                 Invoke("MoveDelayLeft", timeBetweenMoves);
             }
         }
-
-
     }
+
     void FixedUpdate()
     {
         if (canMove == true)
@@ -122,7 +121,7 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-
+    #region MovementFuncttions
     void Move()
     {
         if (moveForward == true)
@@ -174,10 +173,10 @@ public class PlayerMove : MonoBehaviour
                     platformSpawner.EndlessDespawning();
                     movement = 0;
                 }
-                
             }
             moveForward = false;
         }
+
         if (moveBackwards == true)
         {
             birdMesh.transform.eulerAngles = new Vector3(0, 180, 0);
@@ -198,6 +197,7 @@ public class PlayerMove : MonoBehaviour
             }
             moveBackwards = false;
         }
+
         if (moveRight == true)
         {
             birdMesh.transform.eulerAngles = new Vector3(0, 90, 0);
@@ -210,6 +210,7 @@ public class PlayerMove : MonoBehaviour
             }
             moveRight = false;
         }
+
         if (moveLeft == true)
         {
             birdMesh.transform.eulerAngles = new Vector3(0, -90, 0);
@@ -224,7 +225,31 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    IEnumerator MeshMove()
+    {
+        birdMesh.transform.localPosition = prevPos;
+        Vector3 currentPos = prevPos;
+        float t = 0;
+        while (birdMesh.transform.localPosition != Vector3.zero)
+        {
+            t += Time.deltaTime * jumpSpeed;
+            currentPos = Vector3.Lerp(prevPos, Vector3.zero, t);
+            if (t < .5f)
+            {
+                currentPos.y = Mathf.Lerp(0f, jumpHeight, t * 2);
+            }
+            else
+            {
+                currentPos.y = Mathf.Lerp(jumpHeight, 0f, (t * 2) - 1f);
+            }
+            birdMesh.transform.localPosition = currentPos;
+            yield return null;
+        }
+        yield return null;
+    }
+    #endregion
 
+    #region Raycasts
     void RayCastCheckForward()
     {
         RaycastHit hitForward;
@@ -238,7 +263,6 @@ public class PlayerMove : MonoBehaviour
             {
                 canMoveForward = false;
             }
-
         }
         else
         {
@@ -310,7 +334,9 @@ public class PlayerMove : MonoBehaviour
             canMoveLeft = true;
         }
     }
+    #endregion
 
+    #region MoveDelayInvokes
     public void MoveDelayForward()
     {
         moveForward = true;      
@@ -320,16 +346,19 @@ public class PlayerMove : MonoBehaviour
     {
         moveBackwards = true;     
     }
+
     public void MoveDelayRight()
     {
         moveRight = true;      
     }
+
     public void MoveDelayLeft()
     {
-
         moveLeft = true;  
     }
+    #endregion
 
+    #region DeathFunctions
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Vehicle")
@@ -369,6 +398,9 @@ public class PlayerMove : MonoBehaviour
         rb.useGravity = false;
         rb.velocity = Vector3.zero;
     }
+    #endregion
+
+    #region ExplosionFunctions
     void Explode(int x, int y, int z)
     {
         GameObject cube;
@@ -405,7 +437,6 @@ public class PlayerMove : MonoBehaviour
                 rb.AddExplosionForce(explosionForce, explosionSource, explosionRadius, explosionUpward);
             }
         }
-
     }
 
     void Splash(int x, int y, int z)
@@ -444,31 +475,6 @@ public class PlayerMove : MonoBehaviour
                 rb.AddExplosionForce(explosionForce, transform.position, explosionRadius, explosionUpward);
             }
         }
-
     }
-
-
-    IEnumerator MeshMove()
-    {
-        birdMesh.transform.localPosition = prevPos;
-        Vector3 currentPos = prevPos;
-        float t = 0;
-        while (birdMesh.transform.localPosition != Vector3.zero)
-        {
-            t += Time.deltaTime * jumpSpeed;
-            currentPos = Vector3.Lerp(prevPos, Vector3.zero, t);
-            if (t < .5f)
-            {
-                currentPos.y = Mathf.Lerp(0f, jumpHeight, t * 2);
-            }
-            else
-            {
-                currentPos.y = Mathf.Lerp(jumpHeight, 0f, (t * 2) - 1f);
-            }
-            birdMesh.transform.localPosition = currentPos;
-            yield return null;
-        }
-        yield return null;
-    }
+    #endregion
 }
-
