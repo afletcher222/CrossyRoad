@@ -56,7 +56,7 @@ public class CarSpawner : MonoBehaviour
             //Instantiate(carNum01Prefab, transform.position, Quaternion.Euler(-90,90,0));
             GameObject car = Instantiate(carNum02Prefab, carSpawnPoints[randomSpawnPoint].position, carSpawnPoints[randomSpawnPoint].rotation);
             car.transform.SetParent(road);
-            car.GetComponent<CarManager>().randomSpeed = randomCarSpeed;
+            car.GetComponent<CarManager>().randomSpeed = randomCarSpeed+1;
             //car.transform.LookAt();
         }
     }
