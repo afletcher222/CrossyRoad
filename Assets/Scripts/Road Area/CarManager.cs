@@ -5,7 +5,7 @@ using UnityEngine;
 public class CarManager : MonoBehaviour
 {
     public bool carDrivingRight;
-    public  int randomSpeed;
+    public  float randomSpeed;
  
 
 

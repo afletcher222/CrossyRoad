@@ -10,7 +10,7 @@ public class CarSpawner : MonoBehaviour
     public Transform[] carSpawnPoints = new Transform[2];
 
     public int randomSpawnPoint;
-    public int randomCarSpeed;
+    public float randomCarSpeed;
     public int carSpawnRandom;
 
     public GameObject carNum01Prefab;
@@ -22,7 +22,7 @@ public class CarSpawner : MonoBehaviour
      void Awake()
     {
         randomSpawnPoint = Random.Range(0, 2);
-        randomCarSpeed = Random.Range(1, 3);
+        randomCarSpeed = Random.value;
         carSpawnRandom = Random.Range(1, 4);
     }
 
@@ -47,7 +47,7 @@ public class CarSpawner : MonoBehaviour
             //Instantiate(carNum01Prefab, transform.position, Quaternion.Euler(-90,90,0));
             GameObject car = Instantiate(carNum01Prefab, carSpawnPoints[randomSpawnPoint].position, carSpawnPoints[randomSpawnPoint].rotation);
             car.transform.SetParent(road);
-            car.GetComponent<CarManager>().randomSpeed = randomCarSpeed + 3;
+            car.GetComponent<CarManager>().randomSpeed = randomCarSpeed + 4f;
             //car.transform.LookAt();
         }
         if (carSpawnRandom < 3)
@@ -56,7 +56,7 @@ public class CarSpawner : MonoBehaviour
             //Instantiate(carNum01Prefab, transform.position, Quaternion.Euler(-90,90,0));
             GameObject car = Instantiate(carNum02Prefab, carSpawnPoints[randomSpawnPoint].position, carSpawnPoints[randomSpawnPoint].rotation);
             car.transform.SetParent(road);
-            car.GetComponent<CarManager>().randomSpeed = randomCarSpeed+1;
+            car.GetComponent<CarManager>().randomSpeed = randomCarSpeed + 2f;
             //car.transform.LookAt();
         }
     }
