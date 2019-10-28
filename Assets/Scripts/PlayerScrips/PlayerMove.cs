@@ -367,7 +367,7 @@ public class PlayerMove : MonoBehaviour
     {
         GameObject cube;
         cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        
+        cube.layer = 10;
         cube.transform.position = transform.position + new Vector3(cubeSize * x, cubeSize * y, cubeSize * z) - cubesPivot;
         cube.transform.localScale = new Vector3(cubeSize, cubeSize, cubeSize);
         cube.AddComponent<Rigidbody>();
