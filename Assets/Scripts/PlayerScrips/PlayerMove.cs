@@ -15,6 +15,7 @@ public class PlayerMove : MonoBehaviour
     public GameObject birdMesh;
     public Vector3 prevPos;
     public Vector3 cameraCheck;
+    public GameObject playerCameraTarget;
 
     public float jumpSpeed = 20;
     public float jumpHeight = 0.6f;
@@ -57,7 +58,6 @@ public class PlayerMove : MonoBehaviour
     public Material matSplash;
     #endregion
 
-    // Start is called before the first frame update
     void Start()
     {
         Screen.SetResolution(480, 800, false);
@@ -77,7 +77,7 @@ public class PlayerMove : MonoBehaviour
 
         cubesPivotDistance = cubeSize * cubeNum / 2;
         cubesPivot = new Vector3(cubesPivotDistance, cubesPivotDistance, cubesPivotDistance);
-        cameraCheck = transform.position;
+        cameraCheck = playerCameraTarget.transform.position;
     }
 
     void Update()
@@ -90,24 +90,18 @@ public class PlayerMove : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
             {
-                //moveForward = true;
                 Invoke("MoveDelayForward", timeBetweenMoves);
             }
-
             if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
             {
-                //moveBackwards = true;
                 Invoke("MoveDelayBackward", timeBetweenMoves);
             }
             if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
             {
-                //moveRight = true;
                 Invoke("MoveDelayRight", timeBetweenMoves);
             }
-
             if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                //moveLeft = true;
                 Invoke("MoveDelayLeft", timeBetweenMoves);
             }
         }
@@ -135,9 +129,9 @@ public class PlayerMove : MonoBehaviour
                 player.transform.position += new Vector3(0, 0, 1);
                 StartCoroutine(MeshMove());
                 movement++;
-                if(transform.position.x > cameraCheck.x)
+                if(playerCameraTarget.transform.position.z > cameraCheck.z)
                 {
-                    cameraCheck = transform.position;
+                    cameraCheck = playerCameraTarget.transform.position;
                     cameraMove = 0;
                 }
                 if(cameraFreeze == true)

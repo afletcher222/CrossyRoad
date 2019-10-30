@@ -13,6 +13,7 @@ public class DestroyOnTime : MonoBehaviour
     {
         destroyTime = Random.Range(minTime, maxTime);
     }
+
     void Update()
     {
         timePassed += Time.deltaTime;

@@ -5,15 +5,12 @@ using UnityEngine;
 public class ObstacleSpawn : MonoBehaviour
 {
     public GameObject[] obstacles = new GameObject[4];
-    public List<ObstacleLocations> locations = new List<ObstacleLocations>();
-    public List<ObstacleLocations> outsideLocations = new List<ObstacleLocations>();
+    public List<Transform> locations = new List<Transform>();
+    public List<Transform> outsideLocations = new List<Transform>();
 
-    // Start is called before the first frame update
     void Awake()
     {
         int random = Random.Range(2, 5);
-
-        //GetComponentsInChildren<ObstacleLocations>(false, locations);
 
         for (int i = 0; i < random; i++)
         {
@@ -25,7 +22,6 @@ public class ObstacleSpawn : MonoBehaviour
 
             Destroy(locations[randomLocations].GetComponent<ParentLocation>());
             locations.Remove(locations[randomLocations]);
-
         }
 
         int randomSecond = Random.Range(6, 14);
@@ -46,6 +42,7 @@ public class ObstacleSpawn : MonoBehaviour
             {
                 GameObject obstacle = Instantiate(obstacles[randomObstacles], outsideLocations[i].transform.position, outsideLocations[i].transform.rotation);
                 obstacle.transform.parent = gameObject.transform;
+
                 if (i == 1)
                 {
                     Destroy(outsideLocations[1].GetComponent<ParentLocation>());
@@ -54,8 +51,6 @@ public class ObstacleSpawn : MonoBehaviour
                     outsideLocations.Remove(outsideLocations[0]);
                 }
             }
-
         }
     }
-
 }

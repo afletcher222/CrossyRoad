@@ -5,13 +5,11 @@ using UnityEngine;
 public class TrainSpawner : MonoBehaviour
 {
     public float trainLoopTime;
-
-    public Transform track;
-    public Transform[] trainSpawnPoints = new Transform[2];
-
     public int randomSpawnPoint;
     public int trainSpeed;
 
+    public Transform track;
+    public Transform[] trainSpawnPoints = new Transform[2];
     public GameObject trainPrefab;
     public GameObject lightObj;
 

@@ -10,7 +10,6 @@ public class LogBehaviour : MonoBehaviour
     public int maxLogs;
     public bool floatLeft;
     public float maxX, minX;
-
     public Vector3 testWorld, testLocal;
 
     void Awake()

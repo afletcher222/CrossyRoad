@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class EagleController : MonoBehaviour
 {
-
     public PlayerMove playerMove;
 
     public Transform endLocation;
     public Transform player;
     public float eagleSpeed = 5.0f, MoveSpeed = 3.0f;
 
-    void Update()
+    void FixedUpdate()
     {
         if (playerMove.eagleAttack == true)
         {
@@ -23,7 +22,7 @@ public class EagleController : MonoBehaviour
     }
 
    IEnumerator EagleAttacks()
-    {
+   {
        Vector3 startPos = transform.position;
        Vector3 targetPos = player.position;
         targetPos.y += 1;
@@ -36,25 +35,24 @@ public class EagleController : MonoBehaviour
             transform.position = Vector3.Lerp(startPos, targetPos, t);
             yield return null;
         }
+
         player.GetComponent<CapsuleCollider>().enabled = false;
         player.GetComponent<Rigidbody>().useGravity = false;
         player.SetParent(this.gameObject.transform);
 
         startPos = transform.position;
         targetPos = endLocation.position;
-        //targetPos.z -= 5;
-        //transform.LookAt(targetPos);
         t = 0;
+
         while (transform.position.z > targetPos.z)
         {
             t += Time.deltaTime * eagleSpeed * 2;
             transform.position = Vector3.Lerp(startPos, targetPos, t);
-            //transform.LookAt(targetPos);
             yield return null;
         }
 
         playerMove.score.CheckHighScore();
 
         yield return null;
-    }
+   }
 }

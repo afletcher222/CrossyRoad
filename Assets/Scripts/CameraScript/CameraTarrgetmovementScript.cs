@@ -9,18 +9,18 @@ public class CameraTarrgetmovementScript : MonoBehaviour
     public float offset;
     public PlayerMove player;
     Vector3 newPosition;
-    // Start is called before the first frame update
+    public float cameraDelay;
 
-    // Update is called once per frame
     private void FixedUpdate()
     {
-        if (player.cameraMove > 3)
+        if (player.cameraMove > cameraDelay)
         {
             newPosition = transform.position;
             newPosition.x = playerCameraTarget.transform.position.x;
             newPosition += (transform.forward * speed * Time.deltaTime);
             transform.position = newPosition;
         }
+
         if(transform.position.z < playerCameraTarget.transform.position.z)
         {
             newPosition = transform.position;

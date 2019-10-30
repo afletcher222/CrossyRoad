@@ -8,7 +8,6 @@ public class TrainManager : MonoBehaviour
     public int speed;
     public float maxX;
 
-
     void Update()
     {
         if (trainGoingRight == true)

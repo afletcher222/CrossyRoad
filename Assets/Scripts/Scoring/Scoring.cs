@@ -4,12 +4,11 @@ using UnityEngine;
 using System.IO;
 using UnityEngine.UI;
 using System;
-using System.Linq;
 using UnityEngine.SceneManagement;
 
 public class Scoring : MonoBehaviour
 {
-    public class HighScore: IComparable<HighScore>
+    public class HighScore : IComparable<HighScore>
     {
         public int score { get; set; }
         public string person { get; set; }
@@ -18,7 +17,6 @@ public class Scoring : MonoBehaviour
             return score.CompareTo(other.score);
         }
     }
-
     
     public List<HighScore> highScore = new List<HighScore>();
     public PlayerMove player;
@@ -34,7 +32,6 @@ public class Scoring : MonoBehaviour
     public Text highScoreNumberText;
     public Text gameOverText;
 
-    // Start is called before the first frame update
     void Awake()
     {
         highScorePanel.SetActive(false);
@@ -47,10 +44,9 @@ public class Scoring : MonoBehaviour
         {
             GetHighScore();
         }
+
         Vector3 scoreCanvas = highScoreCanvas.transform.position;
-
         scoreCanvas.z =  (highScore[9].score - 1);
-
         highScoreCanvas.transform.position = scoreCanvas;
     }
 
@@ -61,7 +57,6 @@ public class Scoring : MonoBehaviour
         int reverse = 9;
         for (int i = 0; i < 10; i++)
         {
-
             highScore.Add(new HighScore { score = int.Parse(readScore.ReadLine()), person = readName.ReadLine() });
             if (highScore[i].person == "")
             {
@@ -135,5 +130,4 @@ public class Scoring : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-
 }

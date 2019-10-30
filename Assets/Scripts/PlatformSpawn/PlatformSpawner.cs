@@ -22,8 +22,6 @@ public class PlatformSpawner : MonoBehaviour
 
     public bool roadLanes;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         platformList = new List<Transform>();
@@ -71,7 +69,6 @@ public class PlatformSpawner : MonoBehaviour
                         }
                         break;
                 }
-
             }
             else if(i == 0)
             {
@@ -94,13 +91,6 @@ public class PlatformSpawner : MonoBehaviour
             spawnLocation.z++;
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
 
     public void EndlessSpawning()
     {
@@ -126,16 +116,16 @@ public class PlatformSpawner : MonoBehaviour
                         Transform road = Instantiate(roadPlatform, spawnLocation, Quaternion.identity);
                         road.SetParent(platformParent);
                         platformList.Add(road);
-                    if (roadLanes == false)
-                    {
-                        roadLanes = true;
-                    }
-                    else if (roadLanes == true)
-                    {
-                        road.GetComponent<CarSpawner>().roadLines.SetActive(true);
-                        print("atleast 2 roads");
-                    }
-                    break;
+                        if (roadLanes == false)
+                        {
+                            roadLanes = true;
+                        }
+                        else if (roadLanes == true)
+                        {
+                            road.GetComponent<CarSpawner>().roadLines.SetActive(true);
+                            print("atleast 2 roads");
+                        }
+                        break;
                 }
             spawnLocation.z++;
         }
@@ -150,6 +140,3 @@ public class PlatformSpawner : MonoBehaviour
         }
     }
 }
-
-
-

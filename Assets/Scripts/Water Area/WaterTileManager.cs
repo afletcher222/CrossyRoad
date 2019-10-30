@@ -4,16 +4,13 @@ using UnityEngine;
 
 public class WaterTileManager : MonoBehaviour
 {
-    // General vars
     public float padLogRate;
 
-    // Log vars
     public GameObject logPrefab;
     public List<Vector3> logSpawns;
     public float speedMin, speedMax;
     public GameObject locationDisable;
 
-    // Pad vars
     public GameObject padPrefab;
     public List<Transform> padAbsoluteSpawn, padPossibleSpawn;
     public float padSpawnRate, padSinkDelay;

@@ -18,15 +18,13 @@ public class CarSpawner : MonoBehaviour
     public GameObject roadLines;
     public GameObject trainTracks;
 
-
-     void Awake()
+    void Awake()
     {
         randomSpawnPoint = Random.Range(0, 2);
         randomCarSpeed = Random.value;
         carSpawnRandom = Random.Range(1, 4);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (ShouldSpawn())
@@ -38,8 +36,6 @@ public class CarSpawner : MonoBehaviour
     private void Spawn()
     {
         int random = Random.Range(3, 8);
-        
-      
 
         if (carSpawnRandom >= 3)
         {
@@ -48,6 +44,7 @@ public class CarSpawner : MonoBehaviour
             car.transform.SetParent(road);
             car.GetComponent<CarManager>().randomSpeed = randomCarSpeed + 4f;
         }
+
         if (carSpawnRandom < 3)
         {
             carSpawnTime = Time.time + random;
